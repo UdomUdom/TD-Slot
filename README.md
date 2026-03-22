@@ -1,0 +1,1 @@
+tdslot ver. better structures

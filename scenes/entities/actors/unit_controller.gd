@@ -1,14 +1,12 @@
 extends Area2D
 class_name UnitController
-# res://entities/actors/unit_controller.gd
-
 # --- Component References ---
 # ลาก Node ย่อยต่างๆ มาใส่ในช่องเหล่านี้ผ่าน Inspector ฝั่งขวามือ
 @export var visuals: Node2D # Sprite2D หรือ AnimatedSprite2D
 @export var health_component: HealthComponent
 @export var movement_component: MovementComponent
-# @export var targeting_component: TargetingComponent # เตรียมไว้สำหรับตอนทำ Auto-combat
-# @export var weapon_component: WeaponComponent       # เตรียมไว้สำหรับตอนทำ Auto-combat
+@export var targeting_component: TargetingComponent
+@export var weapon_component: WeaponComponent
 
 # --- State & Data ---
 var unit_data: Resource # ใส่ type แบบหลวมๆ ไว้ก่อน หรือใช้ UnitData ถ้าระบบรองรับ
@@ -35,16 +33,38 @@ func setup(data: Resource, lane_id: int, spawn_pos: Vector2) -> void:
 
 func _initialize_components() -> void:
 	if health_component:
-		# ส่ง max_health จาก Resource ไปตั้งค่าเลือด
+		# ส่ง max_health จาก Resource ไปตั้งค่าเลือด 
 		health_component.initialize(unit_data.max_health)
 		
 	if movement_component:
-		# กำหนดความเร็วและทิศทาง (ยูนิตผู้เล่นเดินไปทางขวา = 1, ศัตรู = -1)
-		# ถ้าใน UnitData ยังไม่มี move_speed อย่าลืมไปเพิ่ม property ด้วยนะครับ
-		movement_component.speed = unit_data.get("move_speed", 50.0)
+		# กำหนดความเร็วและทิศทาง (ยูนิตผู้เล่นเดินไปทางขวา = 1, ศัตรู = -1) 
+		movement_component.speed = unit_data.move_speed 
 		movement_component.direction = 1
 		movement_component.resume_movement()
+		
+	if targeting_component:
+		targeting_component.setup(current_lane_id, unit_data.attack_range)
+		
+	if weapon_component:
+		weapon_component.setup(unit_data.base_damage, unit_data.attack_cooldown)
 
+func _process(delta: float) -> void:
+	# ถ้าตายแล้ว ไม่ต้องทำอะไร
+	if health_component and health_component.current_health <= 0:
+		return
+		
+	if targeting_component and weapon_component:
+		var target = targeting_component.get_target()
+		
+		if target:
+			# เจอศัตรู: หยุดเดิน แล้วโจมตี
+			movement_component.stop_movement()
+			if weapon_component.can_attack():
+				weapon_component.attack(target)
+		else:
+			# ไม่เจอศัตรู: เดินหน้าต่อไป
+			movement_component.resume_movement()
+			
 # --- Event Handlers ---
 func _on_health_depleted() -> void:
 	die()

@@ -19,6 +19,9 @@ config/icon="res://icon.svg"
 
 SignalBus="*uid://db7iq0lembw7j"
 LaneManager="*uid://dwawb6o42cdco"
+PoolManager="*uid://c2exd06lhoyqv"
+EconomyManager="*uid://cepm50k3g2plv"
+GameManager="*uid://ccalv0gvmps4x"
 
 [physics]
 

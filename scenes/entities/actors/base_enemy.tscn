@@ -1,31 +1,39 @@
 [gd_scene format=3 uid="uid://laaf4yayqra4"]
 
 [ext_resource type="Script" uid="uid://cg77mvy4pxyp" path="res://scenes/entities/components/health.gd" id="1_35t3d"]
-[ext_resource type="Script" uid="uid://fwpnm6e6hc1h" path="res://scenes/entities/actors/actor_controller.gd" id="1_55ff6"]
+[ext_resource type="Script" uid="uid://cry6qrtt4v6hw" path="res://scenes/entities/actors/enemy_controller.gd" id="1_55ff6"]
 [ext_resource type="Script" uid="uid://caqhllua0yfs5" path="res://scenes/entities/components/movement.gd" id="2_55ff6"]
 [ext_resource type="Script" uid="uid://da3cjwwb6nd2e" path="res://scenes/entities/components/combat.gd" id="3_77dyw"]
 [ext_resource type="Script" uid="uid://nvetjao2batt" path="res://scenes/entities/components/lane_tracker.gd" id="4_u57pa"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_55ff6"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4w8t"]
+radius = 16.0
+height = 32.0
 
-[node name="BaseEnemy" type="Node2D" unique_id=2131419745]
-
-[node name="Actor" type="Area2D" parent="." unique_id=1410567451]
+[node name="Actor" type="Area2D" unique_id=90779872]
+position = Vector2(1136, 16)
 script = ExtResource("1_55ff6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Actor" unique_id=383261310]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1466417367]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.25, 0.25)
+texture = SubResource("CompressedTexture2D_55ff6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Actor" unique_id=2053176540]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1161013708]
 shape = SubResource("CapsuleShape2D_y4w8t")
 
-[node name="HealthComponent" type="Node" parent="Actor" unique_id=908964188]
+[node name="HealthComponent" type="Node" parent="." unique_id=63703824]
 script = ExtResource("1_35t3d")
 
-[node name="MovementComponent" type="Node" parent="Actor" unique_id=928170973]
+[node name="MovementComponent" type="Node" parent="." unique_id=1299704389]
 script = ExtResource("2_55ff6")
 
-[node name="CombatComponent" type="Node" parent="Actor" unique_id=583537947]
+[node name="CombatComponent" type="Node" parent="." unique_id=2087812339]
 script = ExtResource("3_77dyw")
 
-[node name="LaneTrackerComponent" type="Node" parent="Actor" unique_id=359549629]
+[node name="LaneTrackerComponent" type="Node" parent="." unique_id=584907009]
 script = ExtResource("4_u57pa")
