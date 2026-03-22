@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ch64r4wmkur7e"]
+
+[ext_resource type="Script" uid="uid://cukggcbs6qt78" path="res://scenes/entities/actors/unit_controller.gd" id="1_ml0e4"]
+[ext_resource type="Script" uid="uid://cg77mvy4pxyp" path="res://scenes/entities/components/health.gd" id="2_ts1iu"]
+[ext_resource type="Script" uid="uid://caqhllua0yfs5" path="res://scenes/entities/components/movement.gd" id="3_xhe2m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sqqsc"]
+
+[node name="BaseUnit" type="Area2D" unique_id=1354762768]
+script = ExtResource("1_ml0e4")
+
+[node name="Visuals" type="Sprite2D" parent="." unique_id=831199613]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=95970817]
+shape = SubResource("CapsuleShape2D_sqqsc")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=796529627]
+script = ExtResource("2_ts1iu")
+metadata/_custom_type_script = "uid://cg77mvy4pxyp"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=1953633247 node_paths=PackedStringArray("actor")]
+script = ExtResource("3_xhe2m")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://caqhllua0yfs5"

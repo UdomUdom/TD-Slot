@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cufcey8hmn4fy"]
+
+[ext_resource type="Script" uid="uid://fwpnm6e6hc1h" path="res://scenes/entities/actors/actor_controller.gd" id="1_l67h6"]
+[ext_resource type="Script" uid="uid://cg77mvy4pxyp" path="res://scenes/entities/components/health.gd" id="1_p3i12"]
+[ext_resource type="Script" uid="uid://caqhllua0yfs5" path="res://scenes/entities/components/movement.gd" id="2_l67h6"]
+[ext_resource type="Script" uid="uid://da3cjwwb6nd2e" path="res://scenes/entities/components/combat.gd" id="3_0lcp8"]
+[ext_resource type="Script" uid="uid://nvetjao2batt" path="res://scenes/entities/components/lane_tracker.gd" id="4_3ym82"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r8h1a"]
+
+[node name="BaseUnit" type="Node2D" unique_id=1667718016]
+
+[node name="Actor" type="Area2D" parent="." unique_id=2111797073]
+script = ExtResource("1_l67h6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Actor" unique_id=1574690998]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actor" unique_id=797934689]
+shape = SubResource("CapsuleShape2D_r8h1a")
+
+[node name="HealthComponent" type="Node" parent="Actor" unique_id=719480313]
+script = ExtResource("1_p3i12")
+
+[node name="MovementComponent" type="Node" parent="Actor" unique_id=2053105668]
+script = ExtResource("2_l67h6")
+
+[node name="CombatComponent" type="Node" parent="Actor" unique_id=847171905]
+script = ExtResource("3_0lcp8")
+
+[node name="LaneTrackerComponent" type="Node" parent="Actor" unique_id=30607614]
+script = ExtResource("4_3ym82")
