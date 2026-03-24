@@ -1,9 +1,17 @@
 [gd_scene format=4 uid="uid://14sckvpwto0t"]
 
 [ext_resource type="Texture2D" uid="uid://c74a3y5maf6fu" path="res://assets/tiles.png" id="1_4oogn"]
+[ext_resource type="Script" uid="uid://b1llt402h4xou" path="res://scenes/levels/battlefield.gd" id="1_p8kwb"]
 [ext_resource type="PackedScene" uid="uid://laaf4yayqra4" path="res://scenes/entities/actors/base_enemy.tscn" id="2_drste"]
+[ext_resource type="Script" uid="uid://cnwq703tuu36b" path="res://data/lanes/lane_data.gd" id="2_g0srp"]
 [ext_resource type="PackedScene" uid="uid://cufcey8hmn4fy" path="res://scenes/entities/actors/base_unit.tscn" id="2_sa1po"]
+[ext_resource type="Resource" uid="uid://hifm4o476wk5" path="res://data/lanes/lane_1.tres" id="4_1juic"]
 [ext_resource type="Script" uid="uid://dnhajh6svmdof" path="res://scenes/ui/hud/unit_spawn_button.gd" id="4_5hqee"]
+[ext_resource type="Resource" uid="uid://bi7teio7dbwaw" path="res://data/lanes/lane_0.tres" id="5_43drj"]
+[ext_resource type="Resource" uid="uid://dljoplqng4d85" path="res://data/lanes/lane_2.tres" id="5_g0sjx"]
+[ext_resource type="Script" uid="uid://b4lafkriigy5o" path="res://scenes/ui/hud/hud.gd" id="9_taxjf"]
+[ext_resource type="Resource" uid="uid://dgbo6qjqt3ifm" path="res://data/units/unit_soldier.tres" id="10_taxjf"]
+[ext_resource type="Resource" uid="uid://dclv5qgue7b1k" path="res://data/units/unit_gunner.tres" id="11_g0sjx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_drste"]
 texture = ExtResource("1_4oogn")
@@ -155,6 +163,8 @@ outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Battlefield" type="Node2D" unique_id=1317436884]
+script = ExtResource("1_p8kwb")
+level_lanes = Array[ExtResource("2_g0srp")]([ExtResource("5_43drj"), ExtResource("4_1juic"), ExtResource("5_g0sjx")])
 
 [node name="Environment" type="TileMapLayer" parent="." unique_id=383877601]
 visible = false
@@ -190,13 +200,13 @@ visible = false
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1724780225]
 
 [node name="HUD" type="Control" parent="CanvasLayer" unique_id=369213166]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("9_taxjf")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD" unique_id=789756886]
 layout_mode = 1
@@ -209,12 +219,27 @@ offset_bottom = -51.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Button" type="Button" parent="CanvasLayer/HUD/HBoxContainer" unique_id=806916482]
+[node name="SpawnButton_Lane0" type="Button" parent="CanvasLayer/HUD/HBoxContainer" unique_id=806916482]
 layout_mode = 2
-text = "spawn"
+text = "spawn 50"
 script = ExtResource("4_5hqee")
+unit_to_spawn = ExtResource("10_taxjf")
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD" unique_id=370608040]
+[node name="SpawnButton_Lane1" type="Button" parent="CanvasLayer/HUD/HBoxContainer" unique_id=167201388]
+layout_mode = 2
+text = "Spawn 100"
+script = ExtResource("4_5hqee")
+unit_to_spawn = ExtResource("10_taxjf")
+target_lane = 1
+
+[node name="SpawnButton_Lane02" type="Button" parent="CanvasLayer/HUD/HBoxContainer" unique_id=367931202]
+layout_mode = 2
+text = "Spawn 200"
+script = ExtResource("4_5hqee")
+unit_to_spawn = ExtResource("11_g0sjx")
+target_lane = 2
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/HUD" unique_id=370608040]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 518.0

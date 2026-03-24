@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://dclv5qgue7b1k"]
+
+[ext_resource type="Script" uid="uid://byift7wr8o02j" path="res://data/units/unit_data.gd" id="1_sva3j"]
+[ext_resource type="PackedScene" uid="uid://cufcey8hmn4fy" path="res://scenes/entities/actors/base_unit.tscn" id="2_edk6t"]
+
+[resource]
+script = ExtResource("1_sva3j")
+id = "gunner"
+display_name = "gunner"
+cost = 200
+unit_scene = ExtResource("2_edk6t")
+metadata/_custom_type_script = "uid://byift7wr8o02j"

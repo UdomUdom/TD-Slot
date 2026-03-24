@@ -31,7 +31,7 @@ func get_instance(scene: PackedScene, pool_key: String) -> Node2D:
 		return instance
 	
 	# ถ้าใน Pool หมด ให้สร้างใหม่ (Fallback)
-	var new_instance = scene.instantiate()
+	var new_instance = scene.instantiate() # <<-- Don't forget to add base_scene in Unit scene
 	# ไม่ต้อง _activate เพราะเพิ่งสร้างใหม่
 	return new_instance
 

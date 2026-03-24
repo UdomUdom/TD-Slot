@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LaneData" format=3 uid="uid://dljoplqng4d85"]
+
+[ext_resource type="Script" uid="uid://cnwq703tuu36b" path="res://data/lanes/lane_data.gd" id="1_qnrru"]
+
+[resource]
+script = ExtResource("1_qnrru")
+lane_id = 2
+y_position = 600.0
+metadata/_custom_type_script = "uid://cnwq703tuu36b"

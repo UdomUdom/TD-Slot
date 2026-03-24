@@ -1,4 +1,5 @@
 extends Node
+@warning_ignore("unused_signal")
 # res://core/signal_bus.gd
 
 # --- Game Loop ---
