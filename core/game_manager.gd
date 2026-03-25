@@ -4,8 +4,23 @@ extends Node
 # สมมติว่านี่คือ Node "Entities/Units" ในฉาก Battlefield ที่เราจะเอาทหารไปแปะไว้
 var unit_container: Node2D 
 
+# ตัวแปรเก็บโฟลเดอร์กระสุน (ตั้งค่าจาก battlefield.gd)
+var projectile_container: Node2D 
+
 func _ready() -> void:
 	SignalBus.unit_spawn_requested.connect(_on_unit_spawn_requested)
+	# แอบฟังเสียงปืน
+	SignalBus.projectile_fired.connect(_on_projectile_fired)
+
+func _on_projectile_fired(proj_data: Resource, spawn_pos: Vector2, lane_id: int, direction: int, target_group: String) -> void:
+	if not is_instance_valid(projectile_container): return
+	
+	# ดึงกระสุนจาก Pool
+	var proj_instance = PoolManager.get_instance(proj_data.projectile_scene, proj_data.id)
+	projectile_container.add_child(proj_instance)
+	
+	# สั่งกระสุนพุ่ง!
+	proj_instance.setup(proj_data, spawn_pos, direction, target_group)
 
 # UI กดปุ่ม -> ส่ง UnitData กับ Lane ที่จะลงมาที่นี่
 func _on_unit_spawn_requested(unit_data: Resource, lane_id: int) -> void:

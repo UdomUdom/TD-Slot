@@ -19,6 +19,7 @@ func setup(data: EnemyData, lane_id: int, spawn_pos: Vector2) -> void:
 	enemy_data = data
 	current_lane_id = lane_id
 	global_position = spawn_pos
+	add_to_group("enemies")
 	
 	_initialize_components()
 	
@@ -35,8 +36,15 @@ func _initialize_components() -> void:
 		movement_component.resume_movement()
 	if targeting_component:
 		targeting_component.setup(current_lane_id, enemy_data.attack_range, "units")
+		
 	if weapon_component:
-		weapon_component.setup(enemy_data.base_damage, enemy_data.attack_cooldown)
+		weapon_component.setup(
+			enemy_data.base_damage, 
+			enemy_data.attack_cooldown, 
+			current_lane_id, 
+			-1,             
+			"units"         
+		)
 
 func _process(delta: float) -> void:
 	if health_component and health_component.current_health <= 0: return

@@ -23,6 +23,7 @@ func setup(data: Resource, lane_id: int, spawn_pos: Vector2) -> void:
 	unit_data = data
 	current_lane_id = lane_id
 	global_position = spawn_pos
+	add_to_group("units")
 	
 	# แจกจ่ายข้อมูลให้ Components
 	_initialize_components()
@@ -46,7 +47,13 @@ func _initialize_components() -> void:
 		targeting_component.setup(current_lane_id, unit_data.attack_range, "enemies")
 		
 	if weapon_component:
-		weapon_component.setup(unit_data.base_damage, unit_data.attack_cooldown)
+		weapon_component.setup(
+			unit_data.base_damage,
+			unit_data.attack_cooldown,
+			current_lane_id, 
+			1,             
+			"enemies"  
+			)
 
 func _process(delta: float) -> void:
 	# ถ้าตายแล้ว ไม่ต้องทำอะไร

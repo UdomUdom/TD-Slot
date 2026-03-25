@@ -13,7 +13,6 @@
 [ext_resource type="Resource" uid="uid://bkjucnhqw3ry2" path="res://data/waves/wave_01.tres" id="7_c3hdp"]
 [ext_resource type="Script" uid="uid://b4lafkriigy5o" path="res://scenes/ui/hud/hud.gd" id="9_taxjf"]
 [ext_resource type="Resource" uid="uid://dgbo6qjqt3ifm" path="res://data/units/unit_soldier.tres" id="10_taxjf"]
-[ext_resource type="PackedScene" uid="uid://cicwg2wmow27y" path="res://scenes/entities/projectiles/base_projectile.tscn" id="11_c3hdp"]
 [ext_resource type="Resource" uid="uid://dclv5qgue7b1k" path="res://data/units/unit_gunner.tres" id="11_g0sjx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_drste"]
@@ -196,8 +195,7 @@ visible = false
 visible = false
 
 [node name="Projectiles" type="Node2D" parent="Entities" unique_id=135538814]
-
-[node name="BaseProjectile" parent="Entities/Projectiles" unique_id=892829199 instance=ExtResource("11_c3hdp")]
+visible = false
 
 [node name="Base_Player0" type="StaticBody2D" parent="." unique_id=13803835]
 visible = false

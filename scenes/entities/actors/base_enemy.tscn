@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://caqhllua0yfs5" path="res://scenes/entities/components/movement.gd" id="2_55ff6"]
 [ext_resource type="Script" uid="uid://bxkbk6vo1brbr" path="res://scenes/entities/components/weapon.gd" id="3_35t3d"]
 [ext_resource type="Script" uid="uid://da3cjwwb6nd2e" path="res://scenes/entities/components/combat.gd" id="3_77dyw"]
+[ext_resource type="Resource" uid="uid://bkitl83yd44ni" path="res://data/projectiles/projectiles_bullet.tres" id="7_u57pa"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_55ff6"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -49,5 +50,7 @@ script = ExtResource("3_77dyw")
 script = ExtResource("2_5qrnw")
 actor = NodePath("..")
 
-[node name="WeaponComponent" type="Node" parent="." unique_id=1986421236]
+[node name="WeaponComponent" type="Node" parent="." unique_id=1986421236 node_paths=PackedStringArray("actor")]
 script = ExtResource("3_35t3d")
+actor = NodePath("..")
+projectile_data = ExtResource("7_u57pa")

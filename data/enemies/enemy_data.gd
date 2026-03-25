@@ -7,5 +7,11 @@ class_name EnemyData
 @export var attack_range: float = 40.0
 @export var base_damage: int = 5
 @export var attack_cooldown: float = 1.5
-@export var reward_money: int = 15 # เงินที่ได้ตอนฆ่าตาย
-@export var enemy_scene: PackedScene # Scene ของศัตรูตัวนี้สำหรับ PoolManager
+@export var reward_money: int = 15 
+
+@export_group("Ranged Combat")
+@export var is_ranged: bool = false
+@export var projectile_data: ProjectileData 
+
+@export_group("Scenes")
+@export var enemy_scene: PackedScene

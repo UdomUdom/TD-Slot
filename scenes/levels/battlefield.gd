@@ -12,6 +12,7 @@ func _ready() -> void:
 		LaneManager.setup_lanes(level_lanes)
 	
 	GameManager.unit_container = units_container
+	GameManager.projectile_container = $Entities/Projectiles/BaseProjectile
 	
 	# ผูกโฟลเดอร์ศัตรูเข้ากับ WaveManager
 	WaveManager.enemy_container = enemies_container # <-- เพิ่มบรรทัดนี้

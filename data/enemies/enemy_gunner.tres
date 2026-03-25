@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://cdppm4ix40vmr"]
+
+[ext_resource type="Script" uid="uid://c7m2dbx06uqfm" path="res://data/enemies/enemy_data.gd" id="1_2k0ln"]
+[ext_resource type="PackedScene" uid="uid://laaf4yayqra4" path="res://scenes/entities/actors/base_enemy.tscn" id="1_bivki"]
+[ext_resource type="Resource" uid="uid://bkitl83yd44ni" path="res://data/projectiles/projectiles_bullet.tres" id="2_mak4p"]
+
+[resource]
+script = ExtResource("1_2k0ln")
+attack_range = 200.0
+is_ranged = true
+projectile_data = ExtResource("2_mak4p")
+enemy_scene = ExtResource("1_bivki")
+metadata/_custom_type_script = "uid://c7m2dbx06uqfm"

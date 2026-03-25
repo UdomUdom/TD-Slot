@@ -1,3 +1,22 @@
 [gd_scene format=3 uid="uid://cicwg2wmow27y"]
 
-[node name="BaseProjectile" type="Node2D" unique_id=402975914]
+[ext_resource type="Script" uid="uid://c08yx2muq133x" path="res://scenes/entities/projectiles/base_projectile.gd" id="1_gki34"]
+[ext_resource type="Texture2D" uid="uid://buf12jh2vv1eq" path="res://icon.svg" id="1_oxfc5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oxfc5"]
+radius = 6.0
+height = 26.0
+
+[node name="BaseProjectile" type="Area2D" unique_id=892829199]
+script = ExtResource("1_gki34")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=218314633]
+position = Vector2(0, 4.7683716e-07)
+scale = Vector2(0.2, 0.1)
+texture = ExtResource("1_oxfc5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2061655478]
+position = Vector2(0, 2.842171e-14)
+rotation = 1.5707964
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_oxfc5")

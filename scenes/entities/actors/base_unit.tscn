@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://nvetjao2batt" path="res://scenes/entities/components/lane_tracker.gd" id="4_3ym82"]
 [ext_resource type="Script" uid="uid://bgr1da8r8fqu3" path="res://scenes/entities/components/targeting.gd" id="7_r8h1a"]
 [ext_resource type="Script" uid="uid://bxkbk6vo1brbr" path="res://scenes/entities/components/weapon.gd" id="8_ndet2"]
+[ext_resource type="Resource" uid="uid://bkitl83yd44ni" path="res://data/projectiles/projectiles_bullet.tres" id="9_ndet2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r8h1a"]
 radius = 16.0
@@ -47,5 +48,7 @@ script = ExtResource("4_3ym82")
 script = ExtResource("7_r8h1a")
 actor = NodePath("..")
 
-[node name="WeaponComponent" type="Node" parent="." unique_id=914642605]
+[node name="WeaponComponent" type="Node" parent="." unique_id=914642605 node_paths=PackedStringArray("actor")]
 script = ExtResource("8_ndet2")
+actor = NodePath("..")
+projectile_data = ExtResource("9_ndet2")
