@@ -34,7 +34,7 @@ func _initialize_components() -> void:
 		movement_component.direction = -1 
 		movement_component.resume_movement()
 	if targeting_component:
-		targeting_component.setup(current_lane_id, enemy_data.attack_range)
+		targeting_component.setup(current_lane_id, enemy_data.attack_range, "units")
 	if weapon_component:
 		weapon_component.setup(enemy_data.base_damage, enemy_data.attack_cooldown)
 

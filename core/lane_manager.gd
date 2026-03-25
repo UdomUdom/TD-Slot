@@ -46,19 +46,23 @@ func get_enemies_in_lanes(lane_ids: Array[int]) -> Array:
 		target_enemies.append_array(get_enemies_in_lane(lane_id))
 	return target_enemies
 	
-func get_closest_enemy(lane_id: int, global_pos: Vector2) -> Node2D:
-	var enemies = get_enemies_in_lane(lane_id)
-	if enemies.is_empty():
+# ฟังก์ชันใหม่ที่ฉลาดขึ้น หาได้ทั้งฝั่ง "units" และ "enemies"
+func get_closest_entity(lane_id: int, global_pos: Vector2, target_group: String) -> Node2D:
+	if not active_lanes.has(lane_id) or not active_lanes[lane_id].has(target_group):
 		return null
 		
-	var closest_enemy: Node2D = null
+	var entities = active_lanes[lane_id][target_group]
+	if entities.is_empty():
+		return null
+		
+	var closest_entity: Node2D = null
 	var min_distance := INF
 	
-	for enemy in enemies:
-		if is_instance_valid(enemy):
-			var dist = global_pos.distance_squared_to(enemy.global_position)
+	for entity in entities:
+		if is_instance_valid(entity) and entity.health_component.current_health > 0:
+			var dist = global_pos.distance_squared_to(entity.global_position)
 			if dist < min_distance:
 				min_distance = dist
-				closest_enemy = enemy
+				closest_entity = entity
 				
-	return closest_enemy
+	return closest_entity

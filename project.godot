@@ -22,6 +22,7 @@ LaneManager="*uid://dwawb6o42cdco"
 PoolManager="*uid://c2exd06lhoyqv"
 EconomyManager="*uid://cepm50k3g2plv"
 GameManager="*uid://ccalv0gvmps4x"
+WaveManager="*uid://b846r2rg0nja8"
 
 [physics]
 

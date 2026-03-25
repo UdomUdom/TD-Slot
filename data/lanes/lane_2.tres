@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_qnrru")
 lane_id = 2
-y_position = 600.0
+y_position = 200.0
 metadata/_custom_type_script = "uid://cnwq703tuu36b"
