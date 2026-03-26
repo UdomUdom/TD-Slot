@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://colkpwb6c4h7x"]
+
+[ext_resource type="Script" uid="uid://b7pag72u7h3u0" path="res://scenes/entities/actors/base_structure.gd" id="1_2fe1p"]
+[ext_resource type="Script" uid="uid://cg77mvy4pxyp" path="res://scenes/entities/components/health.gd" id="2_biw5t"]
+[ext_resource type="Texture2D" uid="uid://buf12jh2vv1eq" path="res://icon.svg" id="2_ijjf3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7cbg"]
+size = Vector2(120, 236)
+
+[node name="BaseStructure" type="Area2D" unique_id=389413199 node_paths=PackedStringArray("health_component")]
+script = ExtResource("1_2fe1p")
+health_component = NodePath("HealthComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=146203206]
+position = Vector2(0, 1.4901161e-06)
+scale = Vector2(1, 1.84375)
+texture = ExtResource("2_ijjf3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=251451771]
+shape = SubResource("RectangleShape2D_d7cbg")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1728645810]
+script = ExtResource("2_biw5t")

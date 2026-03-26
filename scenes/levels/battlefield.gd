@@ -24,7 +24,16 @@ func _ready() -> void:
 		WaveManager.start_level_waves(level_waves) # <-- เพิ่มบรรทัดนี้
 	else:
 		push_warning("Battlefield: ยังไม่ได้ใส่ข้อมูล WaveData!")
+	SignalBus.game_over.connect(_on_game_over)
 
+func _on_game_over(win: bool) -> void:
+	# ในอนาคตเราจะเรียกใช้ UI หน้าต่างสรุปผลตรงนี้
+	if win:
+		print("VICTORY! Enemy Base Destroyed!")
+		# ตัวอย่างการหยุดเกม: get_tree().paused = true
+	else:
+		print("DEFEAT! Player Base Destroyed!")
+		# ตัวอย่างการหยุดเกม: get_tree().paused = true
 # ฟังก์ชันนี้เตรียมไว้เผื่อคุณพร้อมทำ PoolManager เต็มรูปแบบ
 # func _setup_pools() -> void:
 	# PoolManager.initialize_pool(preload("res://scenes/entities/actors/base_unit.tscn"), "soldier_unit", 20)
