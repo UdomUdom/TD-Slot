@@ -199,12 +199,6 @@ visible = false
 
 [node name="BaseProjectile" parent="Entities/Projectiles" unique_id=892829199 instance=ExtResource("11_c3hdp")]
 
-[node name="Base_Player0" type="StaticBody2D" parent="." unique_id=13803835]
-visible = false
-
-[node name="Base_Enemy0" type="StaticBody2D" parent="." unique_id=1722806878]
-visible = false
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1724780225]
 
 [node name="HUD" type="Control" parent="CanvasLayer" unique_id=369213166]

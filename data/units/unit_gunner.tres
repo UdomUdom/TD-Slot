@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cufcey8hmn4fy" path="res://scenes/entities/actors/base_unit.tscn" id="2_edk6t"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_sva3j")
 id = "gunner"
 display_name = "gunner"

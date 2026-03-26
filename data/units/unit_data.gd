@@ -16,7 +16,7 @@ class_name UnitData
 
 @export_group("Ranged Combat")
 @export var is_ranged: bool = false
-@export var projectile_data: ProjectileData # ลากไฟล์ projectile_data.tres มาใส่
+@export var projectile_data: ProjectileData 
 
 @export_group("Scenes")
 @export var unit_scene: PackedScene

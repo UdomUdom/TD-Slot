@@ -38,6 +38,9 @@ func _initialize_components() -> void:
 		targeting_component.setup(current_lane_id, enemy_data.attack_range, "units")
 		
 	if weapon_component:
+		weapon_component.is_ranged = enemy_data.is_ranged
+		weapon_component.projectile_data = enemy_data.projectile_data
+		
 		weapon_component.setup(
 			enemy_data.base_damage, 
 			enemy_data.attack_cooldown, 

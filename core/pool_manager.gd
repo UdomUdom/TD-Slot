@@ -32,7 +32,6 @@ func get_instance(scene: PackedScene, pool_key: String) -> Node2D:
 	
 	# ถ้าใน Pool หมด ให้สร้างใหม่ (Fallback)
 	var new_instance = scene.instantiate() # <<-- Don't forget to add base_scene in Unit scene
-	# ไม่ต้อง _activate เพราะเพิ่งสร้างใหม่
 	return new_instance
 
 # Function to return an object to the pool (instead of using queue_free)
@@ -40,8 +39,8 @@ func return_instance(instance: Node2D, pool_key: String) -> void:
 	if not _pools.has(pool_key):
 		_pools[pool_key] = []
 	
-	_deactivate_and_store(instance, pool_key)
-
+	call_deferred("_deactivate_and_store", instance, pool_key)
+	
 func _deactivate_and_store(instance: Node2D, pool_key: String) -> void:
 	# If it already has a Parent, remove it first.
 	if instance.get_parent():

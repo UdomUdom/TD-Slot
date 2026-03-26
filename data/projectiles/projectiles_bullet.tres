@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cicwg2wmow27y" path="res://scenes/entities/projectiles/base_projectile.tscn" id="1_jemsk"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_i4d1f")
 projectile_scene = ExtResource("1_jemsk")
 metadata/_custom_type_script = "uid://bjs0wcqao203l"
