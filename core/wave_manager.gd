@@ -9,6 +9,7 @@ var _spawn_timer: float = 0.0
 
 # ตัวแปรนี้จะถูกเซ็ตค่าจากฉาก Battlefield
 var enemy_container: Node2D 
+var enemy_spawn_x: float = 1200.0 
 
 func start_level_waves(level_waves: Array[WaveData]) -> void:
 	waves = level_waves
@@ -70,14 +71,20 @@ func _spawn_random_enemy(wave: WaveData) -> void:
 	if enemies_spawned_this_wave >= wave.total_enemies:
 		_end_current_wave()
 
+# ###################################################
+#func _spawn_enemy(enemy_data: EnemyData, lane_id: int) -> void:
+	## หาตำแหน่ง Y ของเลนนั้น
+	#var lane_y_pos = LaneManager.active_lanes[lane_id]["data"].y_position
+	#
+	## กำหนดจุดเกิดศัตรูให้อยู่ริมขวาของจอ (สมมติ X = 1200)
+	#var spawn_pos = Vector2(1200, lane_y_pos)
+# ###################################################
+
 func _spawn_enemy(enemy_data: EnemyData, lane_id: int) -> void:
-	# หาตำแหน่ง Y ของเลนนั้น
 	var lane_y_pos = LaneManager.active_lanes[lane_id]["data"].y_position
 	
-	# กำหนดจุดเกิดศัตรูให้อยู่ริมขวาของจอ (สมมติ X = 1200)
-	var spawn_pos = Vector2(1200, lane_y_pos)
+	var spawn_pos = Vector2(enemy_spawn_x, lane_y_pos)
 
-	# ดึงศัตรูจาก Pool มาใช้งาน
 	var enemy_instance = PoolManager.get_instance(enemy_data.enemy_scene, enemy_data.id)
 	enemy_container.add_child(enemy_instance)
 	enemy_instance.setup(enemy_data, lane_id, spawn_pos)

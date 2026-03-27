@@ -7,6 +7,9 @@ var unit_container: Node2D
 # ตัวแปรเก็บโฟลเดอร์กระสุน (ตั้งค่าจาก battlefield.gd)
 var projectile_container: Node2D 
 
+# spawn position
+var player_spawn_x: float = 100.0 
+
 func _ready() -> void:
 	SignalBus.unit_spawn_requested.connect(_on_unit_spawn_requested)
 	# แอบฟังเสียงปืน
@@ -34,15 +37,25 @@ func _on_unit_spawn_requested(unit_data: Resource, lane_id: int) -> void:
 	else:
 		print("Not enough money!") # เอาไว้เทส เดี๋ยวค่อยทำ UI เด้งเตือน
 
+#func _spawn_unit(unit_data: Resource, lane_id: int) -> void:
+	## ดึงข้อมูลเลนจาก LaneManager เพื่อหาแกน Y
+	#var lane_y_pos = 0.0
+	#if LaneManager.active_lanes.has(lane_id):
+		#lane_y_pos = LaneManager.active_lanes[lane_id]["data"].y_position
+	#
+	## กำหนดจุดเกิด (ผู้เล่นมักจะเกิดฝั่งซ้ายสุด สมมติแกน X = 100)
+	#var spawn_pos = Vector2(100, lane_y_pos)
+	
+# ###################################################
 func _spawn_unit(unit_data: Resource, lane_id: int) -> void:
-	# ดึงข้อมูลเลนจาก LaneManager เพื่อหาแกน Y
 	var lane_y_pos = 0.0
 	if LaneManager.active_lanes.has(lane_id):
 		lane_y_pos = LaneManager.active_lanes[lane_id]["data"].y_position
 	
-	# กำหนดจุดเกิด (ผู้เล่นมักจะเกิดฝั่งซ้ายสุด สมมติแกน X = 100)
-	var spawn_pos = Vector2(100, lane_y_pos)
-	
+	# เปลี่ยนจุดเกิดจากเลข 100 ให้เป็นตัวแปร player_spawn_x
+	var spawn_pos = Vector2(player_spawn_x, lane_y_pos)
+# ###################################################
+
 	# ดึงยูนิตจาก Pool
 	var unit_instance = PoolManager.get_instance(unit_data.unit_scene, unit_data.id)
 	unit_container.add_child(unit_instance)

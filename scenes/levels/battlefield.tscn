@@ -166,10 +166,12 @@ sources/1 = SubResource("TileSetAtlasSource_drste")
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Battlefield" type="Node2D" unique_id=1317436884]
+[node name="Battlefield" type="Node2D" unique_id=1317436884 node_paths=PackedStringArray("player_base", "enemy_base")]
 script = ExtResource("1_p8kwb")
 level_lanes = Array[ExtResource("2_g0srp")]([ExtResource("5_43drj"), ExtResource("4_1juic"), ExtResource("5_g0sjx")])
 level_waves = Array[ExtResource("6_6p2ub")]([ExtResource("7_c3hdp")])
+player_base = NodePath("Entities/Units/Tower_Player")
+enemy_base = NodePath("Entities/Enemies/Tower_Enemies")
 
 [node name="Environment" type="TileMapLayer" parent="." unique_id=383877601]
 visible = false
@@ -192,7 +194,7 @@ tile_set = SubResource("TileSet_sa1po")
 visible = false
 
 [node name="Tower_Player" parent="Entities/Units" unique_id=389413199 instance=ExtResource("9_akwxv")]
-modulate = Color(0, 1, 1, 1)
+modulate = Color(0, 1, 0, 1)
 position = Vector2(85, 217)
 
 [node name="Enemies" type="Node2D" parent="Entities" unique_id=1011775059]
@@ -201,13 +203,12 @@ position = Vector2(85, 217)
 visible = false
 
 [node name="Tower_Enemies" parent="Entities/Enemies" unique_id=279787681 instance=ExtResource("9_akwxv")]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.87058824, 0, 0.41960785, 1)
+self_modulate = Color(0.049669262, 0.049669262, 0.049669262, 1)
 position = Vector2(1062, 217)
 is_player_base = false
 
-[node name="Projectiles" type="Node2D" parent="Entities" unique_id=135538814]
-
-[node name="BaseProjectile" parent="Entities/Projectiles" unique_id=892829199 instance=ExtResource("11_c3hdp")]
+[node name="Projectiles" parent="Entities" unique_id=892829199 instance=ExtResource("11_c3hdp")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1724780225]
 

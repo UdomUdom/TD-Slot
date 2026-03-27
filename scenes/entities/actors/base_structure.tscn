@@ -7,6 +7,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7cbg"]
 size = Vector2(120, 236)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijjf3"]
+texture = ExtResource("2_ijjf3")
+modulate_color = Color(0, 0, 0.9882353, 1)
+
 [node name="BaseStructure" type="Area2D" unique_id=389413199 node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_2fe1p")
 health_component = NodePath("HealthComponent")
@@ -21,3 +25,11 @@ shape = SubResource("RectangleShape2D_d7cbg")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1728645810]
 script = ExtResource("2_biw5t")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1930351019]
+offset_left = -75.0
+offset_top = 128.0
+offset_right = 75.0
+offset_bottom = 148.0
+theme_override_styles/background = SubResource("StyleBoxTexture_ijjf3")
+show_percentage = false
