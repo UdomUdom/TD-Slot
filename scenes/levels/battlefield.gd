@@ -49,6 +49,8 @@ extends Node2D
 @onready var units_container: Node2D = $Entities/Units
 @onready var enemies_container: Node2D = $Entities/Enemies
 
+@export var slot_rewards: Array[SlotRewardData]
+
 func _ready() -> void:
 	if level_lanes.size() > 0:
 		LaneManager.setup_lanes(level_lanes)
@@ -67,6 +69,11 @@ func _ready() -> void:
 		# สมมติให้ศัตรูเกิดห่างจากฐานศัตรูไปทางซ้าย 100 พิกเซล
 		WaveManager.enemy_spawn_x = enemy_base.global_position.x - 100.0
 	# ---------------------------------
+	# ส่งข้อมูลรางวัลไปให้ตู้สล็อต
+	if slot_rewards.size() > 0:
+		SlotMachineManager.setup_rewards(slot_rewards)
+	else:
+		push_warning("Battlefield: ยังไม่ได้ใส่ของรางวัลตู้สล็อต!")
 	
 	SignalBus.game_started.emit() 
 	

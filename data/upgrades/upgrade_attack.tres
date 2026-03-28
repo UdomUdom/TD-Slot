@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bvnb470ffknpj"]
+
+[ext_resource type="Script" uid="uid://f4hrhddhbpko" path="res://data/upgrades/upgrade_data.gd" id="1_bjj18"]
+[ext_resource type="Texture2D" uid="uid://buf12jh2vv1eq" path="res://icon.svg" id="1_fduba"]
+
+[resource]
+script = ExtResource("1_bjj18")
+icon = ExtResource("1_fduba")
+metadata/_custom_type_script = "uid://f4hrhddhbpko"

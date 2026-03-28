@@ -34,30 +34,36 @@ func setup(data: Resource, lane_id: int, spawn_pos: Vector2) -> void:
 
 func _initialize_components() -> void:
 	if health_component:
-		# ส่ง max_health จาก Resource ไปตั้งค่าเลือด 
-		health_component.initialize(unit_data.max_health)
+		# --- เปลี่ยนวิธีดึงค่าให้ผ่าน Manager ---
+		var final_hp = int(UpgradeManager.get_final_stat("max_health", float(unit_data.max_health)))
+		health_component.initialize(final_hp)
 		
 	if movement_component:
-		# กำหนดความเร็วและทิศทาง (ยูนิตผู้เล่นเดินไปทางขวา = 1, ศัตรู = -1) 
-		movement_component.speed = unit_data.move_speed 
+		var final_speed = UpgradeManager.get_final_stat("move_speed", unit_data.move_speed)
+		movement_component.speed = final_speed
 		movement_component.direction = 1
 		movement_component.resume_movement()
 		
 	if targeting_component:
-		targeting_component.setup(current_lane_id, unit_data.attack_range, "enemies")
+		var final_range = UpgradeManager.get_final_stat("attack_range", unit_data.attack_range)
+		targeting_component.setup(current_lane_id, final_range, "enemies")
 		
 	if weapon_component:
+		var final_dmg = int(UpgradeManager.get_final_stat("base_damage", float(unit_data.base_damage)))
+		var final_atk_cd = UpgradeManager.get_final_stat("attack_cooldown", unit_data.attack_cooldown)
+		
+		# (อย่าลืมบรรทัด is_ranged กับ projectile_data ที่เราเคยแก้ไว้นะครับ)
 		weapon_component.is_ranged = unit_data.is_ranged
 		weapon_component.projectile_data = unit_data.projectile_data
 		
 		weapon_component.setup(
-			unit_data.base_damage,
-			unit_data.attack_cooldown,
+			final_dmg,
+			final_atk_cd,
 			current_lane_id, 
 			1,             
 			"enemies"  
 			)
-
+			
 func _process(delta: float) -> void:
 	# ถ้าตายแล้ว ไม่ต้องทำอะไร
 	if health_component and health_component.current_health <= 0:

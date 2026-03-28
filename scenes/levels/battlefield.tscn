@@ -11,11 +11,16 @@
 [ext_resource type="Resource" uid="uid://dljoplqng4d85" path="res://data/lanes/lane_2.tres" id="5_g0sjx"]
 [ext_resource type="Script" uid="uid://b2wrqux551aks" path="res://data/waves/wave_data.gd" id="6_6p2ub"]
 [ext_resource type="Resource" uid="uid://bkjucnhqw3ry2" path="res://data/waves/wave_01.tres" id="7_c3hdp"]
+[ext_resource type="Script" uid="uid://do7q6ux0jvc8v" path="res://data/upgrades/slot_reward_data.gd" id="8_5kgov"]
 [ext_resource type="PackedScene" uid="uid://colkpwb6c4h7x" path="res://scenes/entities/actors/base_structure.tscn" id="9_akwxv"]
 [ext_resource type="Script" uid="uid://b4lafkriigy5o" path="res://scenes/ui/hud/hud.gd" id="9_taxjf"]
+[ext_resource type="Resource" uid="uid://k8ptlbbemgin" path="res://data/upgrades/reward_free_soldier.tres" id="10_5kgov"]
+[ext_resource type="Resource" uid="uid://duav0mmk8vghq" path="res://data/upgrades/reward_free_gunner.tres" id="10_ff5jt"]
 [ext_resource type="Resource" uid="uid://dgbo6qjqt3ifm" path="res://data/units/unit_soldier.tres" id="10_taxjf"]
 [ext_resource type="PackedScene" uid="uid://cicwg2wmow27y" path="res://scenes/entities/projectiles/base_projectile.tscn" id="11_c3hdp"]
 [ext_resource type="Resource" uid="uid://dclv5qgue7b1k" path="res://data/units/unit_gunner.tres" id="11_g0sjx"]
+[ext_resource type="PackedScene" uid="uid://dtgxtbjmne2eo" path="res://scenes/ui/hud/slot_machine_ui.tscn" id="17_525mt"]
+[ext_resource type="Script" uid="uid://c6bbcnlbid07f" path="res://scenes/ui/hud/slot_machine_ui.gd" id="18_0t8n0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_drste"]
 texture = ExtResource("1_4oogn")
@@ -172,6 +177,7 @@ level_lanes = Array[ExtResource("2_g0srp")]([ExtResource("5_43drj"), ExtResource
 level_waves = Array[ExtResource("6_6p2ub")]([ExtResource("7_c3hdp")])
 player_base = NodePath("Entities/Units/Tower_Player")
 enemy_base = NodePath("Entities/Enemies/Tower_Enemies")
+slot_rewards = Array[ExtResource("8_5kgov")]([ExtResource("10_ff5jt"), ExtResource("10_5kgov")])
 
 [node name="Environment" type="TileMapLayer" parent="." unique_id=383877601]
 visible = false
@@ -262,8 +268,23 @@ text = "Money : 100"
 label_settings = SubResource("LabelSettings_5hqee")
 uppercase = true
 
-[node name="SlotMachineUI" type="Control" parent="CanvasLayer" unique_id=744671790]
+[node name="SlotMachine" type="Control" parent="CanvasLayer" unique_id=582580862]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("18_0t8n0")
+
+[node name="Panel" parent="CanvasLayer/SlotMachine" unique_id=200086833 instance=ExtResource("17_525mt")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 894.0
+offset_top = 500.0
+offset_right = 1044.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2

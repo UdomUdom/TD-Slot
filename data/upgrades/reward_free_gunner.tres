@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SlotRewardData" format=3 uid="uid://duav0mmk8vghq"]
+
+[ext_resource type="Script" uid="uid://do7q6ux0jvc8v" path="res://data/upgrades/slot_reward_data.gd" id="1_ixule"]
+[ext_resource type="Resource" uid="uid://dclv5qgue7b1k" path="res://data/units/unit_gunner.tres" id="2_anafg"]
+
+[resource]
+script = ExtResource("1_ixule")
+id = "reward_unit_gunner"
+display_name = "Gunner Jackpot!"
+reward_type = 1
+weight = 50.0
+money_amount = 0
+unit_to_spawn = ExtResource("2_anafg")
+metadata/_custom_type_script = "uid://do7q6ux0jvc8v"

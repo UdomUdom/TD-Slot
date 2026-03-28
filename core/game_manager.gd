@@ -33,7 +33,7 @@ func _on_unit_spawn_requested(unit_data: Resource, lane_id: int) -> void:
 
 	# เช็คว่าเงินพอไหม? ถ้าพอ ระบบจะหักเงินทันที
 	if EconomyManager.spend_money(unit_data.cost):
-		_spawn_unit(unit_data, lane_id)
+		spawn_unit(unit_data, lane_id)
 	else:
 		print("Not enough money!") # เอาไว้เทส เดี๋ยวค่อยทำ UI เด้งเตือน
 
@@ -47,7 +47,7 @@ func _on_unit_spawn_requested(unit_data: Resource, lane_id: int) -> void:
 	#var spawn_pos = Vector2(100, lane_y_pos)
 	
 # ###################################################
-func _spawn_unit(unit_data: Resource, lane_id: int) -> void:
+func spawn_unit(unit_data: Resource, lane_id: int) -> void:
 	var lane_y_pos = 0.0
 	if LaneManager.active_lanes.has(lane_id):
 		lane_y_pos = LaneManager.active_lanes[lane_id]["data"].y_position

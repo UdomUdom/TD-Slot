@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SlotRewardData" format=3 uid="uid://bhth412m1q2fb"]
+
+[ext_resource type="Script" uid="uid://do7q6ux0jvc8v" path="res://data/upgrades/slot_reward_data.gd" id="1_t7r5p"]
+
+[resource]
+script = ExtResource("1_t7r5p")
+weight = 50.0
+metadata/_custom_type_script = "uid://do7q6ux0jvc8v"

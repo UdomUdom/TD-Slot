@@ -23,6 +23,13 @@ PoolManager="*uid://c2exd06lhoyqv"
 EconomyManager="*uid://cepm50k3g2plv"
 GameManager="*uid://ccalv0gvmps4x"
 WaveManager="*uid://b846r2rg0nja8"
+SlotMachineManager="*uid://c4cy720qidap7"
+UpgradeManager="*uid://doyk1xmfytlhh"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [physics]
 

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dtgxtbjmne2eo"]
+
+[node name="Panel" type="Panel" unique_id=200086833]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpinButton" type="Button" parent="." unique_id=1949504209]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "SPIN! ($50)"
+
+[node name="ResultLabel" type="Label" parent="." unique_id=562863075]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 31.0
+offset_right = 104.0
+offset_bottom = 54.0
+text = "Ready to spin"

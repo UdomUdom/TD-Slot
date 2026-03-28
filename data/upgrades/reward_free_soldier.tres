@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SlotRewardData" format=3 uid="uid://k8ptlbbemgin"]
+
+[ext_resource type="Script" uid="uid://do7q6ux0jvc8v" path="res://data/upgrades/slot_reward_data.gd" id="1_ubrvu"]
+[ext_resource type="Resource" uid="uid://dgbo6qjqt3ifm" path="res://data/units/unit_soldier.tres" id="2_gelkq"]
+
+[resource]
+script = ExtResource("1_ubrvu")
+display_name = "soldier Jackpot!"
+reward_type = 1
+weight = 50.0
+money_amount = 0
+unit_to_spawn = ExtResource("2_gelkq")
+metadata/_custom_type_script = "uid://do7q6ux0jvc8v"

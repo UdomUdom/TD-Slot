@@ -22,3 +22,7 @@ signal base_damaged(amount: int, is_player_base: bool)
 signal money_changed(current_amount: int)
 signal slot_spin_requested
 signal slot_reward_granted(reward_data: Resource)
+
+# --- Upgrade System ---
+signal upgrade_screen_requested(upgrades_to_choose: Array)
+signal upgrade_selected(upgrade_data: Resource)
