@@ -38,15 +38,17 @@ func _initialize_components() -> void:
 		targeting_component.setup(current_lane_id, enemy_data.attack_range, "units")
 		
 	if weapon_component:
+		# --- เพิ่ม 2 บรรทัดนี้เพื่อให้ศัตรูรู้จักการยิงปืน ---
 		weapon_component.is_ranged = enemy_data.is_ranged
 		weapon_component.projectile_data = enemy_data.projectile_data
+		# ----------------------------------------
 		
 		weapon_component.setup(
 			enemy_data.base_damage, 
 			enemy_data.attack_cooldown, 
 			current_lane_id, 
-			-1,             
-			"units"         
+			-1,              
+			"units"          
 		)
 
 func _process(delta: float) -> void:

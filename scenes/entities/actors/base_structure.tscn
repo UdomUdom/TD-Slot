@@ -12,6 +12,7 @@ texture = ExtResource("2_ijjf3")
 modulate_color = Color(0, 0, 0.9882353, 1)
 
 [node name="BaseStructure" type="Area2D" unique_id=389413199 node_paths=PackedStringArray("health_component")]
+z_index = -1
 script = ExtResource("1_2fe1p")
 health_component = NodePath("HealthComponent")
 

@@ -6,7 +6,9 @@
 [resource]
 script = ExtResource("1_87tvp")
 id = "health_up_1"
-display_name = "Health +10"
-description = "เพิ่ม HP ให้ทหารทุกตัว 10 หน่วย"
+display_name = "Health +50"
+description = "เพิ่ม HP ให้ทหารทุกตัว 50 หน่วย"
 icon = ExtResource("1_b8o8w")
+stat_to_modify = "max_health"
+add_value = 50.0
 metadata/_custom_type_script = "uid://f4hrhddhbpko"

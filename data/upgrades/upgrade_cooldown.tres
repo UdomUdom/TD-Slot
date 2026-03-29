@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cnb4yryucdkf0"]
+
+[ext_resource type="Script" uid="uid://f4hrhddhbpko" path="res://data/upgrades/upgrade_data.gd" id="1_duedh"]
+[ext_resource type="Texture2D" uid="uid://buf12jh2vv1eq" path="res://icon.svg" id="1_oykwu"]
+
+[resource]
+script = ExtResource("1_duedh")
+id = "attack_cooldown_1"
+display_name = "Atk_cooldown -10"
+description = "ทหารทุกตัวโจมตีเร็วขึ้น 10 หน่วย"
+icon = ExtResource("1_oykwu")
+stat_to_modify = "attack_cooldown"
+add_value = -10.0
+multiply_bonus = 2.0
+metadata/_custom_type_script = "uid://f4hrhddhbpko"

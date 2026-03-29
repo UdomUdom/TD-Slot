@@ -12,13 +12,19 @@
 [ext_resource type="Script" uid="uid://b2wrqux551aks" path="res://data/waves/wave_data.gd" id="6_6p2ub"]
 [ext_resource type="Resource" uid="uid://bkjucnhqw3ry2" path="res://data/waves/wave_01.tres" id="7_c3hdp"]
 [ext_resource type="Script" uid="uid://do7q6ux0jvc8v" path="res://data/upgrades/slot_reward_data.gd" id="8_5kgov"]
+[ext_resource type="Resource" uid="uid://dv8y7e6iocfji" path="res://data/waves/wave_02.tres" id="8_43bob"]
 [ext_resource type="PackedScene" uid="uid://colkpwb6c4h7x" path="res://scenes/entities/actors/base_structure.tscn" id="9_akwxv"]
 [ext_resource type="Script" uid="uid://b4lafkriigy5o" path="res://scenes/ui/hud/hud.gd" id="9_taxjf"]
 [ext_resource type="Resource" uid="uid://k8ptlbbemgin" path="res://data/upgrades/reward_free_soldier.tres" id="10_5kgov"]
 [ext_resource type="Resource" uid="uid://duav0mmk8vghq" path="res://data/upgrades/reward_free_gunner.tres" id="10_ff5jt"]
 [ext_resource type="Resource" uid="uid://dgbo6qjqt3ifm" path="res://data/units/unit_soldier.tres" id="10_taxjf"]
 [ext_resource type="PackedScene" uid="uid://cicwg2wmow27y" path="res://scenes/entities/projectiles/base_projectile.tscn" id="11_c3hdp"]
+[ext_resource type="Script" uid="uid://f4hrhddhbpko" path="res://data/upgrades/upgrade_data.gd" id="11_d0jpa"]
 [ext_resource type="Resource" uid="uid://dclv5qgue7b1k" path="res://data/units/unit_gunner.tres" id="11_g0sjx"]
+[ext_resource type="Resource" uid="uid://dvkg7bl2mbwib" path="res://data/upgrades/upgrade_health.tres" id="12_0mj81"]
+[ext_resource type="Resource" uid="uid://bvnb470ffknpj" path="res://data/upgrades/upgrade_attack.tres" id="13_43bob"]
+[ext_resource type="Resource" uid="uid://cnb4yryucdkf0" path="res://data/upgrades/upgrade_cooldown.tres" id="14_0mj81"]
+[ext_resource type="PackedScene" uid="uid://cg323tcyamsav" path="res://scenes/upgrades/upgrade_screen.tscn" id="16_w8mcx"]
 [ext_resource type="PackedScene" uid="uid://dtgxtbjmne2eo" path="res://scenes/ui/hud/slot_machine_ui.tscn" id="17_525mt"]
 [ext_resource type="Script" uid="uid://c6bbcnlbid07f" path="res://scenes/ui/hud/slot_machine_ui.gd" id="18_0t8n0"]
 
@@ -174,10 +180,11 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Battlefield" type="Node2D" unique_id=1317436884 node_paths=PackedStringArray("player_base", "enemy_base")]
 script = ExtResource("1_p8kwb")
 level_lanes = Array[ExtResource("2_g0srp")]([ExtResource("5_43drj"), ExtResource("4_1juic"), ExtResource("5_g0sjx")])
-level_waves = Array[ExtResource("6_6p2ub")]([ExtResource("7_c3hdp")])
+level_waves = Array[ExtResource("6_6p2ub")]([ExtResource("7_c3hdp"), ExtResource("8_43bob")])
 player_base = NodePath("Entities/Units/Tower_Player")
 enemy_base = NodePath("Entities/Enemies/Tower_Enemies")
 slot_rewards = Array[ExtResource("8_5kgov")]([ExtResource("10_ff5jt"), ExtResource("10_5kgov")])
+level_upgrades = Array[ExtResource("11_d0jpa")]([ExtResource("12_0mj81"), ExtResource("13_43bob"), ExtResource("14_0mj81")])
 
 [node name="Environment" type="TileMapLayer" parent="." unique_id=383877601]
 visible = false
@@ -194,15 +201,6 @@ tile_set = SubResource("TileSet_sa1po")
 
 [node name="Entities" type="Node" parent="." unique_id=1986210297]
 
-[node name="Units" type="Node2D" parent="Entities" unique_id=208223553]
-
-[node name="Base_Player" parent="Entities/Units" unique_id=1127593367 instance=ExtResource("2_sa1po")]
-visible = false
-
-[node name="Tower_Player" parent="Entities/Units" unique_id=389413199 instance=ExtResource("9_akwxv")]
-modulate = Color(0, 1, 0, 1)
-position = Vector2(85, 217)
-
 [node name="Enemies" type="Node2D" parent="Entities" unique_id=1011775059]
 
 [node name="Base_Enemies" parent="Entities/Enemies" unique_id=90779872 instance=ExtResource("2_drste")]
@@ -213,6 +211,15 @@ modulate = Color(0.87058824, 0, 0.41960785, 1)
 self_modulate = Color(0.049669262, 0.049669262, 0.049669262, 1)
 position = Vector2(1062, 217)
 is_player_base = false
+
+[node name="Units" type="Node2D" parent="Entities" unique_id=208223553]
+
+[node name="Base_Player" parent="Entities/Units" unique_id=1127593367 instance=ExtResource("2_sa1po")]
+visible = false
+
+[node name="Tower_Player" parent="Entities/Units" unique_id=389413199 instance=ExtResource("9_akwxv")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(85, 217)
 
 [node name="Projectiles" parent="Entities" unique_id=892829199 instance=ExtResource("11_c3hdp")]
 
@@ -282,9 +289,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 894.0
-offset_top = 500.0
-offset_right = 1044.0
-offset_bottom = 650.0
+offset_left = 1142.0
+offset_top = 787.0
+offset_right = 1292.0
+offset_bottom = 937.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="UpgradeScreen" parent="CanvasLayer" unique_id=1601336277 instance=ExtResource("16_w8mcx")]

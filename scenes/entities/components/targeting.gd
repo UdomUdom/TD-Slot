@@ -16,16 +16,17 @@ func setup(lane_id: int, range_val: float, target_group: String) -> void:
 
 func get_target() -> Node2D:
 	if is_instance_valid(current_target) and current_target.health_component.current_health > 0:
-		var dist = actor.global_position.distance_to(current_target.global_position)
-		if dist <= attack_range:
+		# เปลี่ยนมาวัดระยะเฉพาะแกน X (ใช้ abs เพื่อแปลงเป็นค่าบวกเสมอ)
+		var dist_x = abs(actor.global_position.x - current_target.global_position.x)
+		if dist_x <= attack_range:
 			return current_target
 			
-	# เรียกใช้ฟังก์ชันใหม่จาก LaneManager
 	var potential_target = LaneManager.get_closest_entity(current_lane_id, actor.global_position, group_to_target)
 	
 	if potential_target:
-		var dist = actor.global_position.distance_to(potential_target.global_position)
-		if dist <= attack_range:
+		# เปลี่ยนมาวัดระยะเฉพาะแกน X เช่นกัน
+		var dist_x = abs(actor.global_position.x - potential_target.global_position.x)
+		if dist_x <= attack_range:
 			current_target = potential_target
 			return current_target
 			
