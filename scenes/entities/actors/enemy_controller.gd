@@ -10,6 +10,7 @@ class_name EnemyController
 
 var enemy_data: EnemyData
 var current_lane_id: int
+var hitbox_radius: float = 5.0
 
 func _ready() -> void:
 	if health_component:

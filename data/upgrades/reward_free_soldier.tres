@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_ubrvu")
-display_name = "soldier Jackpot!"
+id = "reward_unit_soldier"
+display_name = "Soldier Jackpot!"
 reward_type = 1
 weight = 50.0
 money_amount = 0

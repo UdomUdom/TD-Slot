@@ -7,6 +7,8 @@ class_name BaseStructure
 
 @onready var health_bar: ProgressBar = $ProgressBar 
 
+@export var hitbox_radius: float = 100.0
+
 func _ready() -> void:
 	if health_component:
 		health_component.initialize(max_health)

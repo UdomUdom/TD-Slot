@@ -1,7 +1,7 @@
 extends Node
 # res://core/economy_manager.gd
 
-var current_money: int = 999999
+var current_money: int = 999999 # starter money
 
 # --- Passive Income Settings ---
 var passive_income_amount: int = 5  # ได้เงิน 5 บาท

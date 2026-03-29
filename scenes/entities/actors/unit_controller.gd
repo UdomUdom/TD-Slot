@@ -11,6 +11,7 @@ class_name UnitController
 # --- State & Data ---
 var unit_data: Resource # ใส่ type แบบหลวมๆ ไว้ก่อน หรือใช้ UnitData ถ้าระบบรองรับ
 var current_lane_id: int
+var hitbox_radius: float = 5.0
 
 func _ready() -> void:
 	# เชื่อมต่อ Signal จาก Component เข้ามาที่ Controller
@@ -52,9 +53,8 @@ func _initialize_components() -> void:
 		var final_dmg = int(UpgradeManager.get_final_stat("base_damage", float(unit_data.base_damage)))
 		var final_atk_cd = UpgradeManager.get_final_stat("attack_cooldown", unit_data.attack_cooldown)
 		
-		# (อย่าลืมบรรทัด is_ranged กับ projectile_data ที่เราเคยแก้ไว้นะครับ)
-		weapon_component.is_ranged = unit_data.is_ranged
-		weapon_component.projectile_data = unit_data.projectile_data
+		weapon_component.is_ranged = unit_data.get("is_ranged")
+		weapon_component.projectile_data = unit_data.get("projectile_data")
 		
 		weapon_component.setup(
 			final_dmg,

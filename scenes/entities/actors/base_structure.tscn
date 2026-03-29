@@ -5,16 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://buf12jh2vv1eq" path="res://icon.svg" id="2_ijjf3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7cbg"]
-size = Vector2(120, 236)
+size = Vector2(120, 230)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijjf3"]
 texture = ExtResource("2_ijjf3")
 modulate_color = Color(0, 0, 0.9882353, 1)
 
 [node name="BaseStructure" type="Area2D" unique_id=389413199 node_paths=PackedStringArray("health_component")]
-z_index = -1
 script = ExtResource("1_2fe1p")
 health_component = NodePath("HealthComponent")
+hitbox_radius = 60.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=146203206]
 position = Vector2(0, 1.4901161e-06)

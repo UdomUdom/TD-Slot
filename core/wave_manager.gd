@@ -61,11 +61,15 @@ func _spawn_random_enemy(wave: WaveData) -> void:
 	_spawn_enemy(random_enemy_data, random_lane)
 
 	enemies_spawned_this_wave += 1
-	# (ลบคำสั่ง _end_current_wave() ออกจากตรงนี้ไปเลยครับ)
 
 func _spawn_enemy(enemy_data: EnemyData, lane_id: int) -> void:
 	var lane_y_pos = LaneManager.active_lanes[lane_id]["data"].y_position
-	var spawn_pos = Vector2(enemy_spawn_x, lane_y_pos)
+	
+	# สุ่มค่า
+	var random_y_offset = randf_range(-10.0, 10.0)
+	var final_y_pos = lane_y_pos + random_y_offset
+	
+	var spawn_pos = Vector2(enemy_spawn_x, final_y_pos)
 
 	var enemy_instance = PoolManager.get_instance(enemy_data.enemy_scene, enemy_data.id)
 	enemy_container.add_child(enemy_instance)
@@ -79,7 +83,7 @@ func _on_enemy_died(_enemy_id: String, _reward: int, _lane_id: int) -> void:
 	
 	var current_wave = waves[current_wave_index]
 	
-	# ถ้าศัตรูเกิดครบแล้ว และ ตายครบแล้ว ค่อยประกาศจบเวฟ!
+	# ถ้าศัตรูเกิดครบแล้ว และ ตายครบแล้ว ค่อยประกาศจบเวฟ
 	if enemies_spawned_this_wave >= current_wave.total_enemies and enemies_killed_this_wave >= current_wave.total_enemies:
 		_end_current_wave()
 

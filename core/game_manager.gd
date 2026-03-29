@@ -15,7 +15,7 @@ func _ready() -> void:
 	# แอบฟังเสียงปืน
 	SignalBus.projectile_fired.connect(_on_projectile_fired)
 
-func _on_projectile_fired(proj_data: Resource, spawn_pos: Vector2, lane_id: int, direction: int, target_group: String) -> void:
+func _on_projectile_fired(proj_data: Resource, spawn_pos: Vector2, lane_id:int, direction: int, target_group: String) -> void:
 	if not is_instance_valid(projectile_container): return
 	
 	# ดึงกระสุนจาก Pool
@@ -42,8 +42,14 @@ func spawn_unit(unit_data: Resource, lane_id: int) -> void:
 	if LaneManager.active_lanes.has(lane_id):
 		lane_y_pos = LaneManager.active_lanes[lane_id]["data"].y_position
 	
-	# เปลี่ยนจุดเกิดจากเลข 100 ให้เป็นตัวแปร player_spawn_x
-	var spawn_pos = Vector2(player_spawn_x, lane_y_pos)
+	# --- เพิ่มระบบสุ่ม Y-Offset เพื่อไม่ให้ภาพซ้อนทับกัน ---
+	# สุ่มระยะเยื้องขึ้น-ลง (ปรับตัวเลข 10.0 ได้ตามความกว้างของเลนคุณ)
+	var random_y_offset = randf_range(-10.0, 10.0) 
+	var final_y_pos = lane_y_pos + random_y_offset
+	
+	# เปลี่ยนจุดเกิดให้ใช้ค่า final_y_pos แทน
+	var spawn_pos = Vector2(player_spawn_x, final_y_pos)
+	# ------------------------------------------------
 
 	# ดึงยูนิตจาก Pool
 	var unit_instance = PoolManager.get_instance(unit_data.unit_scene, unit_data.id)
