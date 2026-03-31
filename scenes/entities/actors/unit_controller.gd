@@ -34,6 +34,9 @@ func setup(data: Resource, lane_id: int, spawn_pos: Vector2) -> void:
 	LaneManager.register_entity(self, current_lane_id, "units")
 
 func _initialize_components() -> void:
+	if visuals is AnimatedSprite2D and unit_data.get("animation_set") != null:
+		visuals.sprite_frames = unit_data.animation_set
+		
 	if health_component:
 		# --- เปลี่ยนวิธีดึงค่าให้ผ่าน Manager ---
 		var final_hp = int(UpgradeManager.get_final_stat("max_health", float(unit_data.max_health)))
@@ -65,7 +68,6 @@ func _initialize_components() -> void:
 			)
 			
 func _process(delta: float) -> void:
-	# ถ้าตายแล้ว ไม่ต้องทำอะไร
 	if health_component and health_component.current_health <= 0:
 		return
 		
@@ -73,26 +75,29 @@ func _process(delta: float) -> void:
 		var target = targeting_component.get_target()
 		
 		if target:
-			# เจอศัตรู: หยุดเดิน แล้วโจมตี
 			movement_component.stop_movement()
+			# Play attack animation!
+			if visuals is AnimatedSprite2D:
+				visuals.play("attack")
+				
 			if weapon_component.can_attack():
 				weapon_component.attack(target)
 		else:
-			# ไม่เจอศัตรู: เดินหน้าต่อไป
 			movement_component.resume_movement()
+			# Play walk animation!
+			if visuals is AnimatedSprite2D:
+				visuals.play("walk")
 			
 # --- Event Handlers ---
 func _on_health_depleted() -> void:
 	die()
 
 func die() -> void:
-	# 1. แจ้งเตือนระบบว่าตายแล้ว เพื่อเคลียร์ออกจาก Lane
+	# Optional: Play death animation before freeing
+	#if visuals is AnimatedSprite2D: visuals.play("die")
 	LaneManager.unregister_entity(self, current_lane_id, "units")
 	
-	# (Option) ส่ง Signal ไปบอกระบบใหญ่ เผื่อต้องมีการทำ Death VFX หรือเสียง
-	# SignalBus.unit_died.emit(unit_data.id, current_lane_id)
-	
-	# 2. ส่งคืนเข้า Pool แทนการใช้ queue_free()
+	# คืนร่างกลับ Pool (ลบบรรทัดที่ซ้ำซ้อนด้านล่างออก ให้เหลือแค่อันเดียวแบบนี้ครับ)
 	PoolManager.return_instance(self, unit_data.id)
 
 # (เสริม) ฟังก์ชันรับ Damage จะถูกส่งต่อไปที่ HealthComponent

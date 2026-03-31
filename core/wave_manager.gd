@@ -66,7 +66,7 @@ func _spawn_enemy(enemy_data: EnemyData, lane_id: int) -> void:
 	var lane_y_pos = LaneManager.active_lanes[lane_id]["data"].y_position
 	
 	# สุ่มค่า
-	var random_y_offset = randf_range(-10.0, 10.0)
+	var random_y_offset = randf_range(-5.0, 5.0)
 	var final_y_pos = lane_y_pos + random_y_offset
 	
 	var spawn_pos = Vector2(enemy_spawn_x, final_y_pos)

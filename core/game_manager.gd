@@ -43,8 +43,8 @@ func spawn_unit(unit_data: Resource, lane_id: int) -> void:
 		lane_y_pos = LaneManager.active_lanes[lane_id]["data"].y_position
 	
 	# --- เพิ่มระบบสุ่ม Y-Offset เพื่อไม่ให้ภาพซ้อนทับกัน ---
-	# สุ่มระยะเยื้องขึ้น-ลง (ปรับตัวเลข 10.0 ได้ตามความกว้างของเลนคุณ)
-	var random_y_offset = randf_range(-10.0, 10.0) 
+	# สุ่มระยะเยื้องขึ้น-ลง (ปรับตัวเลข 5.0 ได้ตามความกว้างของเลนคุณ)
+	var random_y_offset = randf_range(-5.0, 5.0) 
 	var final_y_pos = lane_y_pos + random_y_offset
 	
 	# เปลี่ยนจุดเกิดให้ใช้ค่า final_y_pos แทน

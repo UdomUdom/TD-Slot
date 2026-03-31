@@ -6,6 +6,7 @@ class_name UnitData
 @export var display_name: String = "Soldier"
 @export var cost: int = 50
 @export var spawn_cooldown: float = 2.0
+@export var animation_set: SpriteFrames
 
 @export_group("Combat Stats")
 @export var max_health: int = 100
