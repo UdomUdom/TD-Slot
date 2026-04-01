@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UnitData" format=3 uid="uid://dclv5qgue7b1k"]
 
-[ext_resource type="SpriteFrames" uid="uid://bpvi4bojpl5uy" path="res://assets/visual/gunner_frames.tres" id="1_16ktl"]
+[ext_resource type="SpriteFrames" uid="uid://bpvi4bojpl5uy" path="res://assets/visual/units/gunner_frames.tres" id="1_16ktl"]
 [ext_resource type="Resource" uid="uid://bkitl83yd44ni" path="res://data/projectiles/projectiles_bullet.tres" id="1_ao5vu"]
 [ext_resource type="Script" uid="uid://byift7wr8o02j" path="res://data/units/unit_data.gd" id="1_sva3j"]
 [ext_resource type="PackedScene" uid="uid://cufcey8hmn4fy" path="res://scenes/entities/actors/base_unit.tscn" id="2_edk6t"]

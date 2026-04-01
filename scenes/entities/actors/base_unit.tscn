@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cukggcbs6qt78" path="res://scenes/entities/actors/unit_controller.gd" id="1_0lcp8"]
 [ext_resource type="Script" uid="uid://cg77mvy4pxyp" path="res://scenes/entities/components/health.gd" id="1_p3i12"]
 [ext_resource type="Script" uid="uid://caqhllua0yfs5" path="res://scenes/entities/components/movement.gd" id="2_l67h6"]
-[ext_resource type="SpriteFrames" uid="uid://bpvi4bojpl5uy" path="res://assets/visual/gunner_frames.tres" id="2_r8h1a"]
+[ext_resource type="SpriteFrames" uid="uid://bpvi4bojpl5uy" path="res://assets/visual/units/gunner_frames.tres" id="2_r8h1a"]
 [ext_resource type="Script" uid="uid://da3cjwwb6nd2e" path="res://scenes/entities/components/combat.gd" id="3_0lcp8"]
 [ext_resource type="Script" uid="uid://nvetjao2batt" path="res://scenes/entities/components/lane_tracker.gd" id="4_3ym82"]
 [ext_resource type="Script" uid="uid://bgr1da8r8fqu3" path="res://scenes/entities/components/targeting.gd" id="7_r8h1a"]

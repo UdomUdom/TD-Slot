@@ -8,6 +8,7 @@ class_name EnemyData
 @export var base_damage: int = 5
 @export var attack_cooldown: float = 1.5
 @export var reward_money: int = 15 
+@export var animation_set: SpriteFrames
 
 @export_group("Ranged Combat")
 @export var is_ranged: bool = false

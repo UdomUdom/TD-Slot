@@ -28,6 +28,12 @@ func setup(data: EnemyData, lane_id: int, spawn_pos: Vector2) -> void:
 	LaneManager.register_entity(self, current_lane_id, "enemies")
 
 func _initialize_components() -> void:
+	if visuals is AnimatedSprite2D or visuals is Sprite2D:
+		visuals.flip_h = true
+		
+	if visuals is AnimatedSprite2D and enemy_data.get("animation_set") != null:
+		visuals.sprite_frames = enemy_data.animation_set
+	
 	if health_component:
 		health_component.initialize(enemy_data.max_health)
 	if movement_component:
@@ -57,12 +63,20 @@ func _process(delta: float) -> void:
 		
 	if targeting_component and weapon_component:
 		var target = targeting_component.get_target()
+
 		if target:
 			movement_component.stop_movement()
+
+			if visuals is AnimatedSprite2D:
+				visuals.play("attack")
+
 			if weapon_component.can_attack():
 				weapon_component.attack(target)
 		else:
 			movement_component.resume_movement()
+
+			if visuals is AnimatedSprite2D:
+				visuals.play("walk")
 
 func _on_health_depleted() -> void:
 	die()
