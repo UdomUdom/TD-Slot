@@ -25,11 +25,13 @@ GameManager="*uid://ccalv0gvmps4x"
 WaveManager="*uid://b846r2rg0nja8"
 SlotMachineManager="*uid://c4cy720qidap7"
 UpgradeManager="*uid://doyk1xmfytlhh"
+GameSession="*uid://ciwwo7mc6lt0v"
 
 [display]
 
 window/size/viewport_width=1800
 window/size/viewport_height=900
+window/stretch/mode="canvas_items"
 
 [physics]
 

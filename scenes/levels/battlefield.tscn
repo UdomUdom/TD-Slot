@@ -275,11 +275,14 @@ text = "Money : 100"
 label_settings = SubResource("LabelSettings_5hqee")
 uppercase = true
 
+[node name="UpgradeScreen" parent="CanvasLayer" unique_id=1601336277 instance=ExtResource("16_w8mcx")]
+
 [node name="SlotMachine" type="Control" parent="CanvasLayer" unique_id=582580862]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 576.0
+offset_right = 576.0
+offset_bottom = 648.0
 script = ExtResource("18_0t8n0")
 
 [node name="Panel" parent="CanvasLayer/SlotMachine" unique_id=200086833 instance=ExtResource("17_525mt")]
@@ -289,14 +292,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 1279.0
-offset_top = 678.0
-offset_right = 1429.0
-offset_bottom = 828.0
+offset_left = -210.0
+offset_top = 110.0
+offset_right = -60.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="UpgradeScreen" parent="CanvasLayer" unique_id=1601336277 instance=ExtResource("16_w8mcx")]
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=952821086]
 layer = -1
