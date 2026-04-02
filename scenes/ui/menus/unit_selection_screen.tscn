@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://buf12jh2vv1eq" path="res://icon.svg" id="1_2gxar"]
 [ext_resource type="Script" uid="uid://cjyxalft3gm7o" path="res://scenes/ui/menus/unit_selection_screen.gd" id="1_13etv"]
+[ext_resource type="Script" uid="uid://byift7wr8o02j" path="res://data/units/unit_data.gd" id="2_hetnx"]
+[ext_resource type="Resource" uid="uid://dclv5qgue7b1k" path="res://data/units/unit_gunner.tres" id="3_ttueb"]
+[ext_resource type="Resource" uid="uid://dgbo6qjqt3ifm" path="res://data/units/unit_soldier.tres" id="4_3toyo"]
 
 [node name="UnitSelectionScreen" type="Control" unique_id=1839298972]
 layout_mode = 3
@@ -11,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_13etv")
+all_game_units = Array[ExtResource("2_hetnx")]([ExtResource("3_ttueb"), ExtResource("4_3toyo"), ExtResource("4_3toyo"), ExtResource("3_ttueb"), ExtResource("3_ttueb"), ExtResource("4_3toyo")])
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=35915654]
 layout_mode = 1
@@ -69,24 +73,21 @@ columns = 4
 [node name="DetailsPanel" type="PanelContainer" parent="VBoxContainer/BottomSplit" unique_id=990542434]
 layout_mode = 2
 
-[node name="UnitIcon" type="TextureRect" parent="VBoxContainer/BottomSplit/DetailsPanel" unique_id=1858303953]
+[node name="VBox" type="VBoxContainer" parent="VBoxContainer/BottomSplit/DetailsPanel" unique_id=751559723]
+layout_mode = 2
+
+[node name="UnitIcon" type="TextureRect" parent="VBoxContainer/BottomSplit/DetailsPanel/VBox" unique_id=1858303953]
 layout_mode = 2
 texture = ExtResource("1_2gxar")
 
-[node name="UnitName" type="Label" parent="VBoxContainer/BottomSplit/DetailsPanel/UnitIcon" unique_id=1796829868]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="UnitName" type="Label" parent="VBoxContainer/BottomSplit/DetailsPanel/VBox" unique_id=1796829868]
+layout_mode = 2
 
-[node name="UnitStats" type="Label" parent="VBoxContainer/BottomSplit/DetailsPanel/UnitIcon" unique_id=1454433322]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="UnitStats" type="Label" parent="VBoxContainer/BottomSplit/DetailsPanel/VBox" unique_id=1454433322]
+layout_mode = 2
 
-[node name="EquipButton" type="Button" parent="VBoxContainer/BottomSplit/DetailsPanel/UnitIcon" unique_id=143023150]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="EquipButton" type="Button" parent="VBoxContainer/BottomSplit/DetailsPanel/VBox" unique_id=143023150]
+layout_mode = 2
 text = "Equip"
 
 [node name="StartMissionButton" type="Button" parent="VBoxContainer" unique_id=1995005899]
