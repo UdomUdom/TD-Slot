@@ -93,3 +93,7 @@ text = "Equip"
 [node name="StartMissionButton" type="Button" parent="VBoxContainer" unique_id=1995005899]
 layout_mode = 2
 text = "START MISSION"
+
+[node name="BackButton" type="Button" parent="VBoxContainer" unique_id=200000000]
+layout_mode = 2
+text = "BACK TO MAIN MENU"

@@ -11,6 +11,7 @@ extends Control
 @onready var details_stats: Label = $VBoxContainer/BottomSplit/DetailsPanel/VBox/UnitStats
 @onready var equip_button: Button = $VBoxContainer/BottomSplit/DetailsPanel/VBox/EquipButton
 @onready var start_button: Button = $VBoxContainer/StartMissionButton
+@onready var back_button: Button = $VBoxContainer/BackButton
 
 var currently_viewed_unit: UnitData = null
 
@@ -23,6 +24,7 @@ func _ready() -> void:
 	
 	equip_button.pressed.connect(_on_equip_pressed)
 	start_button.pressed.connect(_on_start_mission_pressed)
+	back_button.pressed.connect(_on_back_pressed)
 	
 	# Hide details initially
 	details_name.text = "Select a unit"
@@ -93,6 +95,9 @@ func _update_selected_slots_ui() -> void:
 		else:
 			slot_ui.text = "Empty"
 			# slot_ui.icon = null
+
+func _on_back_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")
 
 func _on_start_mission_pressed() -> void:
 	if GameSession.selected_mission_units.is_empty():
