@@ -23,77 +23,118 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.39215687, 1, 0.7176471, 0.25882354)
+color = Color(0.12, 0.12, 0.12, 0.9)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1599202452]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
 
 [node name="TopPanel" type="PanelContainer" parent="VBoxContainer" unique_id=47418294]
 layout_mode = 2
 
-[node name="SelectedSlots" type="HBoxContainer" parent="VBoxContainer/TopPanel" unique_id=1769253685]
+[node name="SelectedSlots" type="GridContainer" parent="VBoxContainer/TopPanel" unique_id=1769253685]
 layout_mode = 2
+columns = 6
 
 [node name="Slot1" type="Button" parent="VBoxContainer/TopPanel/SelectedSlots" unique_id=978824602]
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 text = "Slot1"
 
 [node name="Slot2" type="Button" parent="VBoxContainer/TopPanel/SelectedSlots" unique_id=77535156]
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 text = "Slot2"
 
 [node name="Slot3" type="Button" parent="VBoxContainer/TopPanel/SelectedSlots" unique_id=922909634]
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 text = "Slot3"
 
 [node name="Slot4" type="Button" parent="VBoxContainer/TopPanel/SelectedSlots" unique_id=1435837089]
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 text = "Slot4"
 
 [node name="Slot5" type="Button" parent="VBoxContainer/TopPanel/SelectedSlots" unique_id=1680745030]
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 text = "Slot5"
 
 [node name="Slot6" type="Button" parent="VBoxContainer/TopPanel/SelectedSlots" unique_id=873270798]
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 text = "Slot6"
 
 [node name="BottomSplit" type="HBoxContainer" parent="VBoxContainer" unique_id=657489195]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
 
 [node name="AvailableRoster" type="ScrollContainer" parent="VBoxContainer/BottomSplit" unique_id=1040920392]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/BottomSplit/AvailableRoster" unique_id=391748379]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
 columns = 4
 
 [node name="DetailsPanel" type="PanelContainer" parent="VBoxContainer/BottomSplit" unique_id=990542434]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
 [node name="VBox" type="VBoxContainer" parent="VBoxContainer/BottomSplit/DetailsPanel" unique_id=751559723]
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="UnitIcon" type="TextureRect" parent="VBoxContainer/BottomSplit/DetailsPanel/VBox" unique_id=1858303953]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+size_flags_horizontal = 4
 texture = ExtResource("1_2gxar")
+stretch_mode = 5
 
 [node name="UnitName" type="Label" parent="VBoxContainer/BottomSplit/DetailsPanel/VBox" unique_id=1796829868]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
 
 [node name="UnitStats" type="Label" parent="VBoxContainer/BottomSplit/DetailsPanel/VBox" unique_id=1454433322]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 
 [node name="EquipButton" type="Button" parent="VBoxContainer/BottomSplit/DetailsPanel/VBox" unique_id=143023150]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Equip"
 
-[node name="StartMissionButton" type="Button" parent="VBoxContainer" unique_id=1995005899]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=789756886]
 layout_mode = 2
-text = "START MISSION"
+theme_override_constants/separation = 20
+alignment = 1
 
-[node name="BackButton" type="Button" parent="VBoxContainer" unique_id=200000000]
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=200000000]
+custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "BACK TO MAIN MENU"
+
+[node name="StartMissionButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1995005899]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "START MISSION"

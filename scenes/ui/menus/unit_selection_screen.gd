@@ -3,15 +3,15 @@ extends Control
 
 @export var all_game_units: Array[UnitData] # Drag all your unit .tres files here in the Inspector
 
-@onready var selected_slots_container: HBoxContainer = $VBoxContainer/TopPanel/SelectedSlots
+@onready var selected_slots_container: GridContainer = $VBoxContainer/TopPanel/SelectedSlots
 @onready var available_grid: GridContainer = $VBoxContainer/BottomSplit/AvailableRoster/GridContainer
 
 @onready var details_icon: TextureRect = $VBoxContainer/BottomSplit/DetailsPanel/VBox/UnitIcon
 @onready var details_name: Label = $VBoxContainer/BottomSplit/DetailsPanel/VBox/UnitName
 @onready var details_stats: Label = $VBoxContainer/BottomSplit/DetailsPanel/VBox/UnitStats
 @onready var equip_button: Button = $VBoxContainer/BottomSplit/DetailsPanel/VBox/EquipButton
-@onready var start_button: Button = $VBoxContainer/StartMissionButton
-@onready var back_button: Button = $VBoxContainer/BackButton
+@onready var start_button: Button = $VBoxContainer/HBoxContainer/StartMissionButton
+@onready var back_button: Button = $VBoxContainer/HBoxContainer/BackButton
 
 var currently_viewed_unit: UnitData = null
 
@@ -28,8 +28,9 @@ func _ready() -> void:
 	
 	# Hide details initially
 	details_name.text = "Select a unit"
-	details_stats.text = ""
+	details_stats.text = "Click a unit to see details"
 	equip_button.disabled = true
+	details_icon.texture = null
 
 func _populate_roster() -> void:
 	# Clear placeholder children if any
@@ -38,10 +39,18 @@ func _populate_roster() -> void:
 		
 	# Create a button for every available unit
 	for unit in all_game_units:
+		if unit == null: continue
+		
 		var btn = Button.new()
-		btn.custom_minimum_size = Vector2(80, 80)
+		btn.custom_minimum_size = Vector2(100, 100)
 		btn.text = unit.display_name
-		# If you have icons in UnitData: btn.icon = unit.icon
+		btn.clip_text = true
+		btn.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		
+		# If you have icons in UnitData, you could use them here:
+		# if unit.animation_set: 
+		#     var sprite = unit.animation_set.get_frame_texture("idle", 0)
+		#     btn.icon = sprite
 		
 		btn.pressed.connect(_on_roster_unit_clicked.bind(unit))
 		available_grid.add_child(btn)
@@ -51,9 +60,16 @@ func _on_roster_unit_clicked(unit: UnitData) -> void:
 	
 	# Update Details Panel
 	details_name.text = unit.display_name
-	details_stats.text = "Cost: $%d\nHP: %d\nDMG: %d\nRange: %d" % [
-		unit.cost, unit.max_health, unit.base_damage, unit.attack_range
+	details_stats.text = "Cost: $%d\nHP: %d\nDMG: %d\nRange: %d\nCooldown: %.1fs" % [
+		unit.cost, unit.max_health, unit.base_damage, unit.attack_range, unit.spawn_cooldown
 	]
+	
+	# Show first frame of animation as icon if available
+	if unit.animation_set and unit.animation_set.has_animation("idle"):
+		details_icon.texture = unit.animation_set.get_frame_texture("idle", 0)
+	else:
+		# Fallback to a default icon or null
+		details_icon.texture = null
 	
 	equip_button.disabled = false
 	
@@ -71,30 +87,29 @@ func _on_equip_pressed() -> void:
 	if is_equipped:
 		# Remove it
 		GameSession.selected_mission_units.erase(currently_viewed_unit)
-		equip_button.text = "Equip"
 	else:
 		# Add it (if we have space)
 		if GameSession.selected_mission_units.size() < GameSession.MAX_UNITS:
 			GameSession.selected_mission_units.append(currently_viewed_unit)
-			equip_button.text = "Unequip"
 		else:
 			print("Roster Full! Max 6 units.")
 			
 	_update_selected_slots_ui()
+	_on_roster_unit_clicked(currently_viewed_unit) # Refresh button text
 
 func _update_selected_slots_ui() -> void:
 	var slots = selected_slots_container.get_children()
 	
 	for i in range(slots.size()):
-		var slot_ui = slots[i] # Assuming these are Buttons or Labels
+		var slot_ui = slots[i]
 		
 		if i < GameSession.selected_mission_units.size():
 			var unit = GameSession.selected_mission_units[i]
 			slot_ui.text = unit.display_name
-			# slot_ui.icon = unit.icon
+			slot_ui.modulate = Color.WHITE
 		else:
 			slot_ui.text = "Empty"
-			# slot_ui.icon = null
+			slot_ui.modulate = Color(1, 1, 1, 0.5)
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")
