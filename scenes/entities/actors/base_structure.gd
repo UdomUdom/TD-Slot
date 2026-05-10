@@ -36,9 +36,9 @@ func _register_to_all_lanes() -> void:
 	for lane_id in LaneManager.active_lanes.keys():
 		LaneManager.register_entity(self, lane_id, group_name)
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, attacker: Node2D = null) -> void:
 	if health_component:
-		health_component.take_damage(amount)
+		health_component.take_damage(amount, attacker)
 		# ส่งสัญญาณไปบอก UI ว่าฐานโดนตี (เผื่อทำจอแดงสั่น หรือลดหลอดเลือด)
 		SignalBus.base_damaged.emit(amount, is_player_base)
 

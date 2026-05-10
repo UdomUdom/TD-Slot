@@ -1,19 +1,49 @@
 [gd_scene format=3 uid="uid://dtgxtbjmne2eo"]
 
-[node name="Panel" type="Panel" unique_id=200086833]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(300, 180)
+offset_right = 300.0
+offset_bottom = 180.0
 
-[node name="SpinButton" type="Button" parent="." unique_id=1949504209]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "SPIN! ($50)"
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="ResultLabel" type="Label" parent="." unique_id=562863075]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 31.0
-offset_right = 104.0
-offset_bottom = 54.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Reel1" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reel2" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reel3" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "SPIN SLOT ($50)"
+
+[node name="ResultLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 text = "Ready to spin"
+horizontal_alignment = 1

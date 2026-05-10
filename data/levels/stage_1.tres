@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="LevelData" format=3]
+
+[ext_resource type="Resource" path="res://data/lanes/lane_0.tres" id="1_lane0"]
+[ext_resource type="Resource" path="res://data/lanes/lane_1.tres" id="2_lane1"]
+[ext_resource type="Resource" path="res://data/lanes/lane_2.tres" id="3_lane2"]
+[ext_resource type="Resource" path="res://data/waves/wave_01.tres" id="4_wave1"]
+[ext_resource type="Resource" path="res://data/waves/wave_02.tres" id="5_wave2"]
+[ext_resource type="Resource" path="res://data/upgrades/reward_free_soldier.tres" id="6_reward1"]
+[ext_resource type="Resource" path="res://data/upgrades/reward_free_gunner.tres" id="7_reward2"]
+[ext_resource type="Resource" path="res://data/upgrades/reward_100.tres" id="8_reward3"]
+[ext_resource type="Resource" path="res://data/upgrades/upgrade_health.tres" id="9_up1"]
+[ext_resource type="Resource" path="res://data/upgrades/upgrade_attack.tres" id="10_up2"]
+[ext_resource type="Resource" path="res://data/upgrades/upgrade_cooldown.tres" id="11_up3"]
+[ext_resource type="Script" path="res://data/levels/level_data.gd" id="12_script"]
+
+[resource]
+script = ExtResource("12_script")
+level_name = "Frontier Outpost"
+lanes = Array[Resource]([ExtResource("1_lane0"), ExtResource("2_lane1"), ExtResource("3_lane2")])
+waves = Array[Resource]([ExtResource("4_wave1"), ExtResource("5_wave2")])
+slot_rewards = Array[Resource]([ExtResource("6_reward1"), ExtResource("7_reward2"), ExtResource("8_reward3")])
+upgrades = Array[Resource]([ExtResource("9_up1"), ExtResource("10_up2"), ExtResource("11_up3")])
+difficulty_multiplier = 1.0

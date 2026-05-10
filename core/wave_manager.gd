@@ -76,7 +76,7 @@ func _spawn_enemy(enemy_data: EnemyData, lane_id: int) -> void:
 	enemy_instance.setup(enemy_data, lane_id, spawn_pos)
 
 # 4. ฟังก์ชันใหม่เช็คสถานะตอนศัตรูตาย
-func _on_enemy_died(_enemy_id: String, _reward: int, _lane_id: int) -> void:
+func _on_enemy_died(_enemy_id: String, _reward: int, _lane_id: int, _killer: Node2D = null) -> void:
 	if not is_wave_active: return
 		
 	enemies_killed_this_wave += 1

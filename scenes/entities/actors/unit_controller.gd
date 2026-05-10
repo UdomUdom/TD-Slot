@@ -46,6 +46,7 @@ func _initialize_components() -> void:
 		var final_speed = UpgradeManager.get_final_stat("move_speed", unit_data.move_speed)
 		movement_component.speed = final_speed
 		movement_component.direction = 1
+		movement_component.current_lane_id = current_lane_id
 		movement_component.resume_movement()
 		
 	if targeting_component:
@@ -101,6 +102,14 @@ func die() -> void:
 	PoolManager.return_instance(self, unit_data.id)
 
 # (เสริม) ฟังก์ชันรับ Damage จะถูกส่งต่อไปที่ HealthComponent
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, attacker: Node2D = null) -> void:
 	if health_component:
-		health_component.take_damage(amount)
+		health_component.take_damage(amount, attacker)
+
+func add_shield(amount: int) -> void:
+	if health_component:
+		health_component.add_shield(amount)
+
+func heal(amount: int) -> void:
+	if health_component:
+		health_component.heal(amount)

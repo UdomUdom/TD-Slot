@@ -6,15 +6,25 @@ extends Node
 # Value: Dictionary containing "data", "units", "enemies", and "projectiles" Arrays.
 var active_lanes: Dictionary = {}
 
+# Lane modifiers: { lane_id: { "speed": 1.0, "range": 1.0, "damage": 1.0, "spawn": true } }
+var lane_modifiers: Dictionary = {}
+
 # Called by the Level/Battlefield when a stage starts
 func setup_lanes(lanes_data: Array[LaneData]) -> void:
 	active_lanes.clear()
+	lane_modifiers.clear()
 	for lane in lanes_data:
 		active_lanes[lane.lane_id] = {
 			"data": lane,
 			"units": [],
 			"enemies": [],
 			"projectiles": []
+		}
+		lane_modifiers[lane.lane_id] = {
+			"speed": 1.0,
+			"range": 1.0,
+			"damage": 1.0,
+			"spawn": true
 		}
 
 # Entities call this when they enter the scene
@@ -31,6 +41,21 @@ func register_entity(entity: Node2D, lane_id: int, entity_group: String) -> void
 func unregister_entity(entity: Node2D, lane_id: int, entity_group: String) -> void:
 	if active_lanes.has(lane_id) and entity_group in active_lanes[lane_id]:
 		active_lanes[lane_id][entity_group].erase(entity)
+
+func get_front_most_unit(lane_id: int) -> Node2D:
+	if not active_lanes.has(lane_id) or active_lanes[lane_id]["units"].is_empty():
+		return null
+		
+	var units = active_lanes[lane_id]["units"]
+	var front_unit: Node2D = null
+	var max_x := -INF
+	
+	for unit in units:
+		if is_instance_valid(unit) and unit.global_position.x > max_x:
+			max_x = unit.global_position.x
+			front_unit = unit
+			
+	return front_unit
 
 # --- Helper Functions for Combat (Auto-targeting) ---
 

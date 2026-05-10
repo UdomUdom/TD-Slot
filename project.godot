@@ -25,6 +25,8 @@ GameManager="*uid://ccalv0gvmps4x"
 WaveManager="*uid://b846r2rg0nja8"
 SlotMachineManager="*uid://c4cy720qidap7"
 UpgradeManager="*uid://doyk1xmfytlhh"
+ChaosManager="*res://core/chaos_manager.gd"
+SynergyManager="*res://core/synergy_manager.gd"
 GameSession="*uid://ciwwo7mc6lt0v"
 
 [display]

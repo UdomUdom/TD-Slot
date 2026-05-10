@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UnitData" format=3]
+
+[ext_resource type="SpriteFrames" path="res://assets/visual/units/mock_frames.tres" id="1_frames"]
+[ext_resource type="Script" path="res://data/units/unit_data.gd" id="2_script"]
+[ext_resource type="PackedScene" path="res://scenes/entities/actors/base_unit.tscn" id="3_scene"]
+
+[resource]
+script = ExtResource("2_script")
+id = "guardian"
+unit_class = 3
+display_name = "Guardian Mech"
+cost = 150
+spawn_cooldown = 5.0
+animation_set = ExtResource("1_frames")
+max_health = 300
+move_speed = 30.0
+attack_range = 60.0
+base_damage = 5
+attack_cooldown = 1.5
+is_ranged = false
+unit_scene = ExtResource("3_scene")

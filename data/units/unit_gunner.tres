@@ -9,6 +9,7 @@
 resource_local_to_scene = true
 script = ExtResource("1_sva3j")
 id = "gunner"
+unit_class = 2
 display_name = "Gunner"
 cost = 200
 animation_set = ExtResource("1_16ktl")

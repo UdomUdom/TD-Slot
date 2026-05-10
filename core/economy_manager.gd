@@ -21,8 +21,12 @@ func _process(delta: float) -> void:
 		_timer -= income_interval
 		add_money(passive_income_amount)
 
-func _on_enemy_died(_enemy_id: String, reward: int, _lane_id: int) -> void:
-	add_money(reward)
+func _on_enemy_died(_enemy_id: String, reward: int, _lane_id: int, _killer: Node2D = null) -> void:
+	var final_reward = reward
+	if ChaosManager.is_frenzy_active:
+		final_reward *= 2
+		print("FRENZY BONUS GOLD!")
+	add_money(final_reward)
 
 func add_money(amount: int) -> void:
 	current_money += amount

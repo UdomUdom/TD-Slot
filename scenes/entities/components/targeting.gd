@@ -15,6 +15,10 @@ func setup(lane_id: int, range_val: float, target_group: String) -> void:
 	group_to_target = target_group
 
 func get_target() -> Node2D:
+	var final_range = attack_range
+	if LaneManager.lane_modifiers.has(current_lane_id):
+		final_range *= LaneManager.lane_modifiers[current_lane_id]["range"]
+
 	if is_instance_valid(current_target) and current_target.health_component.current_health > 0:
 		# 1. เช็คว่าเป้าหมายมีตัวแปร hitbox_radius ไหม (ถ้ามีให้ดึงมา ถ้าไม่มีให้เป็น 0)
 		var target_size = 0.0
@@ -24,7 +28,7 @@ func get_target() -> Node2D:
 		var dist_x = abs(actor.global_position.x - current_target.global_position.x)
 		
 		# 2. เอาระยะห่างมาลบด้วยขนาดของเป้าหมาย ทหารจะได้หยุดที่ "ขอบ" 
-		if (dist_x - target_size) <= attack_range:
+		if (dist_x - target_size) <= final_range:
 			return current_target
 			
 	var potential_target = LaneManager.get_closest_entity(current_lane_id, actor.global_position, group_to_target)
@@ -36,7 +40,7 @@ func get_target() -> Node2D:
 			
 		var dist_x = abs(actor.global_position.x - potential_target.global_position.x)
 		
-		if (dist_x - target_size) <= attack_range:
+		if (dist_x - target_size) <= final_range:
 			current_target = potential_target
 			return current_target
 			

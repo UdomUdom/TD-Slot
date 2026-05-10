@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UnitData" format=3]
+
+[ext_resource type="SpriteFrames" path="res://assets/visual/units/mock_frames.tres" id="1_frames"]
+[ext_resource type="Script" path="res://data/units/unit_data.gd" id="2_script"]
+[ext_resource type="PackedScene" path="res://scenes/entities/actors/base_unit.tscn" id="3_scene"]
+
+[resource]
+script = ExtResource("2_script")
+id = "mutant"
+unit_class = 4
+display_name = "Bio-Mutant"
+cost = 100
+spawn_cooldown = 3.0
+animation_set = ExtResource("1_frames")
+max_health = 150
+move_speed = 70.0
+attack_range = 40.0
+base_damage = 25
+attack_cooldown = 0.8
+is_ranged = false
+unit_scene = ExtResource("3_scene")

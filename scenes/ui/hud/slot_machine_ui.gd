@@ -1,8 +1,13 @@
 extends Control
 # res://ui/hud/slot_machine_ui.gd
 
-@onready var spin_button: Button = $Panel/SpinButton
-@onready var result_label: Label = $Panel/ResultLabel
+@onready var spin_button: Button = $Panel/VBoxContainer/SpinButton
+@onready var result_label: Label = $Panel/VBoxContainer/ResultLabel
+@onready var reel1: Label = $Panel/VBoxContainer/HBoxContainer/Reel1
+@onready var reel2: Label = $Panel/VBoxContainer/HBoxContainer/Reel2
+@onready var reel3: Label = $Panel/VBoxContainer/HBoxContainer/Reel3
+
+var is_spinning: bool = false
 
 func _ready() -> void:
 	spin_button.pressed.connect(_on_spin_pressed)
@@ -10,22 +15,37 @@ func _ready() -> void:
 	SignalBus.money_changed.connect(_on_money_changed)
 
 func _on_spin_pressed() -> void:
-	result_label.text = "Spinning..."
-	# ปิดปุ่มชั่วคราวกันคนกดสแปม
-	spin_button.disabled = true 
-	
-	# ส่งคำสั่งไปบอก Manager
+	if is_spinning: return
 	SignalBus.slot_spin_requested.emit()
 
 func _on_reward_granted(reward: SlotRewardData) -> void:
-	# ดีเลย์ให้ความรู้สึกเหมือนกำลังลุ้นสล็อต
-	await get_tree().create_timer(1.0).timeout 
+	_play_spin_animation(reward)
+
+func _play_spin_animation(reward: SlotRewardData) -> void:
+	is_spinning = true
+	spin_button.disabled = true
+	result_label.text = "Spinning..."
 	
-	result_label.text = "You won:\n" + reward.display_name
+	var symbols = ["7", "X", "$", "!", "#", "@"]
 	
-	# เช็คเงินอีกรอบก่อนเปิดปุ่มให้กดใหม่
+	for i in range(10):
+		reel1.text = symbols.pick_random()
+		reel2.text = symbols.pick_random()
+		reel3.text = symbols.pick_random()
+		await get_tree().create_timer(0.1).timeout
+	
+	var char_res = reward.display_name.substr(0, 1)
+	reel1.text = char_res
+	reel2.text = char_res
+	reel3.text = char_res
+	
+	result_label.text = "WIN: " + reward.display_name
+	is_spinning = false
 	_on_money_changed(EconomyManager.current_money)
 
 func _on_money_changed(current_money: int) -> void:
-	# ถ้าเงินน้อยกว่าค่าหมุน (สมมติ 50) ปุ่มจะกดไม่ได้
-	spin_button.disabled = current_money < SlotMachineManager.spin_cost
+	if not is_spinning:
+		var cost_reduction = SynergyManager.get_synergy_bonus(UnitData.UnitClass.TECH)
+		var final_cost = int(SlotMachineManager.spin_cost * (1.0 - cost_reduction))
+		spin_button.disabled = current_money < final_cost
+		spin_button.text = "SPIN SLOT ($%d)" % final_cost

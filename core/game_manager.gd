@@ -15,7 +15,7 @@ func _ready() -> void:
 	# แอบฟังเสียงปืน
 	SignalBus.projectile_fired.connect(_on_projectile_fired)
 
-func _on_projectile_fired(proj_data: Resource, spawn_pos: Vector2, lane_id:int, direction: int, target_group: String) -> void:
+func _on_projectile_fired(proj_data: Resource, spawn_pos: Vector2, lane_id: int, direction: int, target_group: String, attacker: Node2D = null) -> void:
 	if not is_instance_valid(projectile_container): return
 	
 	# ดึงกระสุนจาก Pool
@@ -23,7 +23,7 @@ func _on_projectile_fired(proj_data: Resource, spawn_pos: Vector2, lane_id:int, 
 	projectile_container.add_child(proj_instance)
 	
 	# สั่งกระสุนพุ่ง!
-	proj_instance.setup(proj_data, spawn_pos, direction, target_group)
+	proj_instance.setup(proj_data, spawn_pos, direction, target_group, attacker)
 
 # UI กดปุ่ม -> ส่ง UnitData กับ Lane ที่จะลงมาที่นี่
 func _on_unit_spawn_requested(unit_data: Resource, lane_id: int) -> void:

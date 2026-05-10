@@ -2,7 +2,10 @@ extends Resource
 class_name UnitData
 # res://data/units/unit_data.gd
 
+enum UnitClass { NONE, SOLDIER, TECH, GUARDIAN, MUTANT }
+
 @export var id: String = "soldier"
+@export var unit_class: UnitClass = UnitClass.SOLDIER
 @export var display_name: String = "Soldier"
 @export var cost: int = 50
 @export var spawn_cooldown: float = 2.0

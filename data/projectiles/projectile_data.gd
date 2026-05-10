@@ -7,3 +7,7 @@ class_name ProjectileData
 @export var damage: int = 10
 @export var pierce_count: int = 1 # จำนวนศัตรูที่ยิงทะลุได้ (1 = โดนตัวแรกระเบิดเลย)
 @export var projectile_scene: PackedScene # ลาก base_projectile.tscn มาใส่ตรงนี้
+
+@export_group("Bullet Interactions")
+@export var is_splinter: bool = false
+@export var splinter_count: int = 2

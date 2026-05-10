@@ -40,6 +40,7 @@ func _initialize_components() -> void:
 		movement_component.speed = enemy_data.move_speed
 		# ข้อแตกต่างที่ 2: ศัตรูเดินไปทางซ้าย (-1)
 		movement_component.direction = -1 
+		movement_component.current_lane_id = current_lane_id
 		movement_component.resume_movement()
 	if targeting_component:
 		targeting_component.setup(current_lane_id, enemy_data.attack_range, "units")
@@ -85,10 +86,14 @@ func die() -> void:
 	LaneManager.unregister_entity(self, current_lane_id, "enemies")
 	
 	# ข้อแตกต่างที่ 3: ส่ง Signal แจกเงินรางวัลเมื่อตาย
-	SignalBus.enemy_died.emit(enemy_data.id, enemy_data.reward_money, current_lane_id)
+	var killer = null
+	if health_component:
+		killer = health_component.last_attacker
+		
+	SignalBus.enemy_died.emit(enemy_data.id, enemy_data.reward_money, current_lane_id, killer)
 	
 	PoolManager.return_instance(self, enemy_data.id)
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, attacker: Node2D = null) -> void:
 	if health_component:
-		health_component.take_damage(amount)
+		health_component.take_damage(amount, attacker)

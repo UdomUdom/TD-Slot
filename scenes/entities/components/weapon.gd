@@ -35,13 +35,17 @@ func can_attack() -> bool:
 func attack(target: Node2D) -> void:
 	if not can_attack(): return
 		
-	_cooldown_timer = attack_cooldown
+	# Apply Soldier Synergy (cooldown reduction)
+	var speed_bonus = SynergyManager.get_synergy_bonus(UnitData.UnitClass.SOLDIER)
+	var final_cooldown = attack_cooldown / (1.0 + speed_bonus)
+	
+	_cooldown_timer = final_cooldown
 	attacked.emit()
 	
 	if is_ranged and projectile_data:
 		# ถ้ายิงปืน: ส่งสัญญาณไปให้คนเสกกระสุน
-		SignalBus.projectile_fired.emit(projectile_data, actor.global_position, current_lane_id, direction, target_group)
+		SignalBus.projectile_fired.emit(projectile_data, actor.global_position, current_lane_id, direction, target_group, actor)
 	else:
 		# ถ้าตีใกล้: ทำดาเมจใส่เป้าหมายทันที
 		if target.has_method("take_damage"):
-			target.take_damage(damage)
+			target.take_damage(damage, actor)
