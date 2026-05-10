@@ -10,9 +10,23 @@ extends Node2D
 @onready var enemies_container: Node2D = $Entities/Enemies
 
 func _ready() -> void:
+	# Use level from session if available
+	if GameSession.selected_level:
+		level_data = GameSession.selected_level
+	elif not level_data:
+		# Fallback to stage 1 for direct testing
+		level_data = load("res://data/levels/stage_1.tres")
+
 	if not level_data:
-		push_error("Battlefield: No level_data assigned!")
+		push_error("Battlefield: No level_data assigned or found!")
 		return
+
+	# --- Debug: Add default units if starting directly ---
+	if GameSession.selected_mission_units.is_empty():
+		var soldier = load("res://data/units/unit_soldier.tres")
+		var gunner = load("res://data/units/unit_gunner.tres")
+		if soldier: GameSession.selected_mission_units.append(soldier)
+		if gunner: GameSession.selected_mission_units.append(gunner)
 
 	if level_data.lanes.size() > 0:
 		LaneManager.setup_lanes(level_data.lanes)
@@ -39,6 +53,14 @@ func _ready() -> void:
 	
 	SignalBus.game_over.connect(_on_game_over)
 	SignalBus.wave_cleared.connect(_on_wave_cleared)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"): # Usually Escape
+		get_tree().change_scene_to_file("res://scenes/ui/menus/main_menu.tscn")
+	
+	if Input.is_key_pressed(KEY_R):
+		get_tree().paused = false # Unpause if it was paused by game over
+		get_tree().reload_current_scene()
 
 # ฟังก์ชันใหม่! ถูกเรียกเมื่อศัตรูหมดเวฟ
 func _on_wave_cleared(_wave_num: int) -> void:

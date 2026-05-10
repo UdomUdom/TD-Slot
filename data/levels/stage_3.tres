@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://data/levels/level_data.gd" id="1_lev3"]
+[ext_resource type="Resource" path="res://data/lanes/lane_0.tres" id="2_l0"]
+[ext_resource type="Resource" path="res://data/lanes/lane_1.tres" id="3_l1"]
+[ext_resource type="Resource" path="res://data/lanes/lane_2.tres" id="4_l2"]
+[ext_resource type="Resource" path="res://data/lanes/lane_3.tres" id="5_l3"]
+[ext_resource type="Resource" path="res://data/lanes/lane_4.tres" id="6_l4"]
+[ext_resource type="Resource" path="res://data/waves/wave_02.tres" id="7_w2"]
+
+[resource]
+script = ExtResource("1_lev3")
+level_name = "Stage 3: Bullet Storm"
+lanes = Array[Resource]([ExtResource("2_l0"), ExtResource("3_l1"), ExtResource("4_l2"), ExtResource("5_l3"), ExtResource("6_l4")])
+waves = Array[Resource]([ExtResource("7_w2"), ExtResource("7_w2")])
+difficulty_multiplier = 1.5

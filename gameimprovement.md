@@ -47,3 +47,25 @@
 - Moved Lane Modifiers info to the right side of the screen.
 - Upgraded Slot Machine UI with a 3-reel visual layout and spinning animation logic.
 - Integrated Tech Synergy cost reduction directly into the Slot Machine spin button text.
+
+## Session and Roster Management
+- Implemented dynamic HUD button generation that automatically synchronizes with the player's selected unit roster from the `GameSession`.
+- Updated `SignalBus` to use `Resource`-based signatures for `unit_spawn_requested`, ensuring type safety across the spawning pipeline.
+- Added automatic debug unit initialization in `Battlefield` to allow for immediate testing of gameplay without going through selection menus.
+
+## Gameplay and UX Improvements
+- Added 'R' hotkey to instantly reload the current scene, facilitating faster iteration during development.
+- Implemented 'Escape' shortcut to return to the Main Menu from the battlefield.
+- Fixed signal and method signature mismatches in the unit spawning system to ensure stable gameplay transitions.
+
+## Screen Resolution and Visual Polish
+- Enabled "Expand" stretch aspect in project settings to support various screen resolutions while maintaining design integrity.
+- Optimized hitboxes for Units and Projectiles, reducing collision shapes for a more precise and rewarding "bullet hell" experience.
+- Improved UI anchoring and scaling across selection screens and HUD.
+
+## Game Loop and Progression
+- Implemented a new **Stage Selection System**, allowing players to choose their level before selecting their unit roster.
+- Added `GameSession` persistence for `selected_level`, unifying the flow between menus and gameplay.
+- Created new `Stage 2` and `Stage 3` configurations with increased lane counts (up to 5 lanes) and scaled difficulty multipliers.
+- Refined the HUD to dynamically distribute unit spawn buttons across available lanes based on the current level's lane configuration.
+- Added lane-specific spawning logic to ensure units are better distributed at the start of a mission.

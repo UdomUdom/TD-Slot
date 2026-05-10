@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://data/levels/level_data.gd" id="1_lev2"]
+[ext_resource type="Resource" path="res://data/lanes/lane_0.tres" id="2_l0"]
+[ext_resource type="Resource" path="res://data/lanes/lane_1.tres" id="3_l1"]
+[ext_resource type="Resource" path="res://data/lanes/lane_2.tres" id="4_l2"]
+[ext_resource type="Resource" path="res://data/lanes/lane_3.tres" id="5_l3"]
+[ext_resource type="Resource" path="res://data/waves/wave_01.tres" id="6_w1"]
+
+[resource]
+script = ExtResource("1_lev2")
+level_name = "Stage 2: The Crossfire"
+lanes = Array[Resource]([ExtResource("2_l0"), ExtResource("3_l1"), ExtResource("4_l2"), ExtResource("5_l3")])
+waves = Array[Resource]([ExtResource("6_w1"), ExtResource("6_w1")])
+difficulty_multiplier = 1.2

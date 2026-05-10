@@ -9,6 +9,8 @@ var lane_modifier_label: Label
 var left_vbox: VBoxContainer
 var right_vbox: VBoxContainer
 
+@onready var spawn_buttons_container: HBoxContainer = $HBoxContainer
+
 func _ready() -> void:
 	SignalBus.money_changed.connect(_on_money_changed)
 	SignalBus.chaos_meter_changed.connect(_on_chaos_changed)
@@ -18,6 +20,35 @@ func _ready() -> void:
 	
 	_create_dynamic_ui()
 	_update_lane_modifiers_display()
+	_setup_spawn_buttons()
+
+func _setup_spawn_buttons() -> void:
+	if not spawn_buttons_container: return
+	
+	# Clear existing static buttons
+	for child in spawn_buttons_container.get_children():
+		child.queue_free()
+	
+	# Create buttons for each selected unit
+	var available_lanes = LaneManager.active_lanes.keys()
+	if available_lanes.is_empty(): return
+	
+	for unit_data in GameSession.selected_mission_units:
+		# Create a container for each unit to have buttons for multiple lanes or just one
+		# For better UX, let's create a button that spawns in the "current" lane
+		# or multiple buttons if we want. Let's start with lane 1 as default
+		# but distribute them if we have many units.
+		
+		var btn = Button.new()
+		btn.set_script(load("res://scenes/ui/hud/unit_spawn_button.gd"))
+		btn.unit_to_spawn = unit_data
+		
+		# Strategy: Assign units to different lanes initially
+		var target_lane = available_lanes[GameSession.selected_mission_units.find(unit_data) % available_lanes.size()]
+		btn.target_lane = target_lane
+		
+		btn.custom_minimum_size = Vector2(120, 60)
+		spawn_buttons_container.add_child(btn)
 
 func _create_dynamic_ui() -> void:
 	# Container for Left side info (Chaos, Synergies)

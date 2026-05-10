@@ -8,8 +8,8 @@ func _ready() -> void:
 	exit_button.pressed.connect(_on_exit_pressed)
 
 func _on_start_pressed() -> void:
-	# Usually we go to unit selection first
-	get_tree().change_scene_to_file("res://scenes/ui/menus/unit_selection_screen.tscn")
+	# Now we go to level selection first
+	get_tree().change_scene_to_file("res://scenes/ui/menus/level_selection_screen.tscn")
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

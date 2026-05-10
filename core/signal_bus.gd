@@ -9,7 +9,7 @@ signal wave_cleared(wave_number: int)
 signal game_over(win: bool)
 
 # --- Entity Management ---
-signal unit_spawn_requested(unit_id: String, lane_id: int)
+signal unit_spawn_requested(unit_data: Resource, lane_id: int)
 signal unit_spawned(unit_node: Node2D, lane_id: int)
 signal enemy_spawned(enemy_node: Node2D, lane_id: int)
 signal enemy_died(enemy_id: String, reward: int, lane_id: int, killer: Node2D)
