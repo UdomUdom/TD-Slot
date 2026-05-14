@@ -17,10 +17,18 @@ func _ready() -> void:
 	SignalBus.frenzy_mode_started.connect(_on_frenzy_started)
 	SignalBus.frenzy_mode_ended.connect(_on_frenzy_ended)
 	SynergyManager.synergies_updated.connect(_update_synergy_display)
+	SignalBus.game_started.connect(_on_game_started)
 	
 	_create_dynamic_ui()
 	_update_lane_modifiers_display()
+	
+	# If game is already started (e.g. reload), call setup immediately
+	if not LaneManager.active_lanes.is_empty():
+		_setup_spawn_buttons()
+
+func _on_game_started() -> void:
 	_setup_spawn_buttons()
+	_update_lane_modifiers_display()
 
 func _setup_spawn_buttons() -> void:
 	if not spawn_buttons_container: return

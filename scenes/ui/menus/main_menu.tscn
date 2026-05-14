@@ -31,7 +31,7 @@ offset_right = 100.0
 offset_bottom = 150.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
-text = "TD DATA SLOT"
+text = "TD Slot"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
