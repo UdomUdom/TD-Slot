@@ -45,3 +45,10 @@ TD-Slot is a high-octane, lane-based tower defense game built with **Godot 4.x**
 
 ## Info
 This project is incomplete. Feel free to use, modify, and distribute it for your own projects!
+
+## preview
+
+![image](/showcase/menu.png)
+![image](/showcase/stage_select.png)
+![image](/showcase/unit_select.png)
+![image](/showcase/lane_game.png)
