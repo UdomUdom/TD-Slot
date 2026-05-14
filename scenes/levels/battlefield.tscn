@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://14sckvpwto0t"]
 
-[ext_resource type="Texture2D" uid="uid://c74a3y5maf6fu" path="res://assets/tiles.png" id="1_4oogn"]
 [ext_resource type="Script" uid="uid://b1llt402h4xou" path="res://scenes/levels/battlefield.gd" id="1_p8kwb"]
 [ext_resource type="PackedScene" uid="uid://laaf4yayqra4" path="res://scenes/entities/actors/base_enemy.tscn" id="2_drste"]
 [ext_resource type="PackedScene" uid="uid://cufcey8hmn4fy" path="res://scenes/entities/actors/base_unit.tscn" id="2_sa1po"]
@@ -14,11 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://dtgxtbjmne2eo" path="res://scenes/ui/hud/slot_machine_ui.tscn" id="17_525mt"]
 [ext_resource type="Script" uid="uid://c6bbcnlbid07f" path="res://scenes/ui/hud/slot_machine_ui.gd" id="18_0t8n0"]
 [ext_resource type="Resource" path="res://data/levels/stage_1.tres" id="19_stage1"]
-[ext_resource type="Resource" path="res://data/units/unit_guardian.tres" id="20_guardian"]
-[ext_resource type="Resource" path="res://data/units/unit_mutant.tres" id="21_mutant"]
+[ext_resource type="Resource" uid="uid://delyolfgn2trh" path="res://data/units/unit_guardian.tres" id="20_guardian"]
+[ext_resource type="Resource" uid="uid://bbv0xb2ghnumk" path="res://data/units/unit_mutant.tres" id="21_mutant"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c3hdp"]
+load_path = "res://.godot/imported/tiles.png-0d11a4bcdfb48056f67a66da241684a1.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_drste"]
-texture = ExtResource("1_4oogn")
+texture = SubResource("CompressedTexture2D_c3hdp")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0

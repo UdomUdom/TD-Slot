@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="tdataslot"
+config/name="TD-Slot"
 run/main_scene="res://scenes/ui/menus/main_menu.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"

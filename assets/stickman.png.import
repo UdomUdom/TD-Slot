@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5ploo5c1o2he"
-path="res://.godot/imported/Character_Run_RP1 (40x40).png-638413fec2ec23f9e8353cdf3c0439b3.ctex"
+uid="uid://kun3wlqjkcpx"
+path="res://.godot/imported/stickman.png-1bf087f23f9bad33624cc4b24b96b922.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Character_Run_RP1 (40x40).png"
-dest_files=["res://.godot/imported/Character_Run_RP1 (40x40).png-638413fec2ec23f9e8353cdf3c0439b3.ctex"]
+source_file="res://assets/stickman.png"
+dest_files=["res://.godot/imported/stickman.png-1bf087f23f9bad33624cc4b24b96b922.ctex"]
 
 [params]
 

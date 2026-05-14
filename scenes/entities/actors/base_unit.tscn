@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://bxkbk6vo1brbr" path="res://scenes/entities/components/weapon.gd" id="8_ndet2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r8h1a"]
-radius = 10.0
 height = 20.0
 
 [node name="Actor" type="Area2D" unique_id=1127593367 node_paths=PackedStringArray("visuals", "health_component", "movement_component", "targeting_component", "weapon_component")]
